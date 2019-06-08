@@ -3,12 +3,14 @@ import 'firebase/auth';
 
 import util from '../../helpers/util';
 
+import diaryPrint from '../diary/diary';
 
 import googleImage from './googlebtn.png';
 
 const signMeIn = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+  diaryPrint.diaryPrintToDom(firebase.auth().currentUser.uid);
 };
 
 const authBuilder = () => {
