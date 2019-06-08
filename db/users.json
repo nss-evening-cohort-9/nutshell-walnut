@@ -1,0 +1,14 @@
+{
+  "user1":{
+    "uid":"dummyuid1",
+    "username":"dummyusername1"
+  },
+  "user2":{
+    "uid":"dummyuid2",
+    "username":"dummyusername2"
+  },
+  "user3":{
+    "uid":"dummyuid3",
+    "username":"dummyusername3"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "news1": {
+    "id": "",
+    "title":"",
+    "url":"",
+    "synopsis":"",
+    "uid": ""
+  },
+  "news2": {
+    "id":"",
+    "title":"",
+    "url": "",
+    "synopsis": "",
+    "uid": ""
+  },
+  "news3": {
+    "id": "",
+    "title":"",
+    "url":"",
+    "synopsis":"",
+    "uid":""
+  },
+  "news4": {
+    "id": "",
+    "title":"",
+    "url":"",
+    "synopsis":"",
+    "uid":""
+  }
+}
