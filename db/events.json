@@ -1,0 +1,34 @@
+{
+  "events": [{
+    "dayOfWeek": "Wednesday",
+    "dateOfMonth": "19th",
+    "month": "June",
+    "title": "Juneteenth Celebration",
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "dayOfWeek": "Thursday",
+    "dateOfMonth": "4th",
+    "month": "July",
+    "title": "4th of July Celebration",
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "dayOfWeek": "Monday",
+    "dateOfMonth": "5th",
+    "month": "August",
+    "title": "Summer Break!",
+    "imageUrl": "",
+    "description": ""
+  },
+  {
+    "dayOfWeek": "Sunday",
+    "dateOfMonth": "25th",
+    "month": "August",
+    "title": "Jeressia's Birthday Brunch",
+    "imageUrl": "",
+    "description": ""
+  }]
+}
