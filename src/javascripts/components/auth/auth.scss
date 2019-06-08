@@ -1,0 +1,30 @@
+.authDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  max-width: 75%;
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.log-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+#google-auth {
+  display: flex;
+  border: none;
+  background-color: transparent;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.button {
+  transform: scale(.5);
+}
+.button:hover {
+  transform: scale(.55);
+}
