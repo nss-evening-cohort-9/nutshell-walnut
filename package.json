@@ -1,0 +1,13 @@
+{
+  "name": "new-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/javascripts/main.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production --module-bind js=babel-loader"
+  },
+  "keywords": [],
+  "author": "Austin Casey",
+  "license": "MIT"
+}
