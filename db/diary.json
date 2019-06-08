@@ -1,0 +1,20 @@
+{
+  "diaryentry1":{
+    "date":"dummydate1",
+    "title":"dummytitle1",
+    "entryText":"dummyentrytext1",
+    "uid":"dummyuid1"
+  },
+  "diaryentry2":{
+    "date":"dummydate2",
+    "title":"dummytitle2",
+    "entryText":"dummyentrytext2",
+    "uid":"dummyuid2"
+  },
+  "diaryentry3":{
+    "date":"dummydate3",
+    "title":"dummytitle3",
+    "entryText":"dummyentrytext3",
+    "uid":"dummyuid3"
+  }
+}
