@@ -1,5 +1,6 @@
 {
   "events": [{
+    "uid": "123",
     "dayOfWeek": "Wednesday",
     "dateOfMonth": "19th",
     "month": "June",
@@ -8,6 +9,7 @@
     "description": ""
   },
   {
+    "uid": "123",
     "dayOfWeek": "Thursday",
     "dateOfMonth": "4th",
     "month": "July",
@@ -16,6 +18,7 @@
     "description": ""
   },
   {
+    "uid": "123",
     "dayOfWeek": "Monday",
     "dateOfMonth": "5th",
     "month": "August",
@@ -24,6 +27,7 @@
     "description": ""
   },
   {
+    "uid": "123",
     "dayOfWeek": "Sunday",
     "dateOfMonth": "25th",
     "month": "August",
