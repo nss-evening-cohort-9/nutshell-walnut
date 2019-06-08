@@ -34,7 +34,7 @@
   </nav>
 <body>
   <div id="auth"></div>
-  <button id="show-diary" class="btn btn-secondary">Diary</button>
+  <!-- form for new diary entry  -->
   <div id="new-diary-entry" class="hide">
     <button class="btn btn-danger">Add New Entry</button>
     <form class="col-6 offset-3">
@@ -53,6 +53,7 @@
       <button type="submit" id="saveNewEntry" class="btn btn-primary">Save Entry</button>
     </form>
   </div>
-  <div id="diary-entries"></div>
+  <!-- listed diary entries according to current user uid -->
+  <div id="diary-entries" class="hide"></div>
 </body>
 </html>
