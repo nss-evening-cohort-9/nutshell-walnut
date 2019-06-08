@@ -1,7 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed|Gloria+Hallelujah&display=swap');
+
+
+@import '../javascripts/components/myNavbar/myNavbar.scss';
+@import './responsive.scss';
+
 body {
   background-color: #886d59;
+  background-image: url('../../assets/nutshellbg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hide {
