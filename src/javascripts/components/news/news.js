@@ -5,7 +5,7 @@ import newsData from '../../helpers/data/newsData';
 
 
 const newsDomStringBulder = () => {
-  let domString = '<div class container d-flex>';
+  let domString = '<div class = "container d-flex">';
   newsData.getNewsByUid().then((newsResp) => {
     newsResp.forEach((newsItem) => {
       domString += '<div class = "card">';

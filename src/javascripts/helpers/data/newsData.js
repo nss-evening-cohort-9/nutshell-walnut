@@ -1,18 +1,18 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
-const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
+const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const getNewsByUid = uid => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/news.json?orderBy="uid"&equalTo="${uid}"`)
+const getNewsByUid = () => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/news.json`)
     .then((response) => {
-      console.error(response);
       const newsResult = response.data;
       const news = [];
-      Object.keys(news).forEach((newsPost) => {
-        news[newsPost].id = newsPost;
+      Object.keys(newsResult).forEach((newsPost) => {
+        newsResult[newsPost].id = newsPost;
         news.push(newsResult[newsPost]);
       });
+      console.error(news);
       resolve(news);
     })
     .catch(err => reject(err));
