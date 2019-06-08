@@ -1,5 +1,5 @@
 {
-  "events": [{
+  "event1": {
     "uid": "123",
     "dayOfWeek": "Wednesday",
     "dateOfMonth": "19th",
@@ -8,7 +8,7 @@
     "imageUrl": "",
     "description": ""
   },
-  {
+  "event2": {
     "uid": "123",
     "dayOfWeek": "Thursday",
     "dateOfMonth": "4th",
@@ -17,7 +17,7 @@
     "imageUrl": "",
     "description": ""
   },
-  {
+  "event3": {
     "uid": "123",
     "dayOfWeek": "Monday",
     "dateOfMonth": "5th",
@@ -26,7 +26,7 @@
     "imageUrl": "",
     "description": ""
   },
-  {
+  "event4": {
     "uid": "123",
     "dayOfWeek": "Sunday",
     "dateOfMonth": "25th",
@@ -34,5 +34,5 @@
     "title": "Jeressia's Birthday Brunch",
     "imageUrl": "",
     "description": ""
-  }]
+  }
 }
