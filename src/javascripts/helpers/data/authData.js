@@ -8,6 +8,7 @@ const diaryNavbar = document.getElementById('navbar-button-diary');
 const messagesNavbar = document.getElementById('navbar-button-messages');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
+const newsTab = document.getElementById('news');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -19,6 +20,7 @@ const checkLoginStatus = () => {
       messagesNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
+      newsTab.classList.remove('hide');
     } else {
       authDiv.classList.remove('hide');
       newsNavbar.classList.add('hide');
@@ -27,6 +29,7 @@ const checkLoginStatus = () => {
       messagesNavbar.classList.add('hide');
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
+      newsTab.classList.add('hide');
     }
   });
 };
