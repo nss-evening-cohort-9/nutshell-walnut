@@ -34,26 +34,29 @@
   </nav>
 <body>
   <div id="auth"></div>
+  <div id="messages" class = "hide">mess</div>
+  <div id="news" class = "hide">news</div>
   <!-- form for new diary entry  -->
   <div id="new-diary-entry" class="hide">
-    <button class="btn btn-danger">Add New Entry</button>
-    <form class="col-6 offset-3">
-      <div class="form-group">
-        <label for="entry-title">Title</label>
-        <input type="text" class="form-control" id="entry-title" placeholder="Title">
-      </div>
-      <div class="form-group">
-        <label for="entry-date">Date</label>
-        <input type="text" class="form-control" id="entry-date" placeholder="Jan. 1, 1999">
-      </div>
-      <div class="form-group">
-        <label for="entry-text">Entry</label>
-        <input type="text" class="form-control" id="entry-text" placeholder="What's on your mind?">
-      </div>
-      <button type="submit" id="saveNewEntry" class="btn btn-primary">Save Entry</button>
-    </form>
-  </div>
-  <!-- listed diary entries according to current user uid -->
-  <div id="diary-entries" class="hide"></div>
+      <button class="btn btn-danger">Add New Entry</button>
+      <form class="col-6 offset-3">
+        <div class="form-group">
+          <label for="entry-title">Title</label>
+          <input type="text" class="form-control" id="entry-title" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <label for="entry-date">Date</label>
+          <input type="text" class="form-control" id="entry-date" placeholder="Jan. 1, 1999">
+        </div>
+        <div class="form-group">
+          <label for="entry-text">Entry</label>
+          <input type="text" class="form-control" id="entry-text" placeholder="What's on your mind?">
+        </div>
+        <button type="submit" id="saveNewEntry" class="btn btn-primary">Save Entry</button>
+      </form>
+    </div>
+    <!-- listed diary entries according to current user uid -->
+    <div id="diary-entries" class="hide"></div>
+  <div id="events" class = "hide">event</div>
 </body>
 </html>
