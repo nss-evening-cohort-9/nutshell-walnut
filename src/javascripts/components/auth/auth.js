@@ -3,6 +3,8 @@ import 'firebase/auth';
 
 import util from '../../helpers/util';
 
+import './auth.scss';
+
 
 import googleImage from './googlebtn.png';
 
