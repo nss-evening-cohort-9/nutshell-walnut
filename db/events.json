@@ -1,0 +1,38 @@
+{
+  "event1": {
+    "uid": "123",
+    "dayOfWeek": "Wednesday",
+    "dateOfMonth": "19th",
+    "month": "June",
+    "title": "Juneteenth Celebration",
+    "imageUrl": "",
+    "description": ""
+  },
+  "event2": {
+    "uid": "123",
+    "dayOfWeek": "Thursday",
+    "dateOfMonth": "4th",
+    "month": "July",
+    "title": "4th of July Celebration",
+    "imageUrl": "",
+    "description": ""
+  },
+  "event3": {
+    "uid": "123",
+    "dayOfWeek": "Monday",
+    "dateOfMonth": "5th",
+    "month": "August",
+    "title": "Summer Break!",
+    "imageUrl": "",
+    "description": ""
+  },
+  "event4": {
+    "uid": "123",
+    "dayOfWeek": "Sunday",
+    "dateOfMonth": "25th",
+    "month": "August",
+    "title": "Jeressia's Birthday Brunch",
+    "imageUrl": "",
+    "description": ""
+  }
+}
