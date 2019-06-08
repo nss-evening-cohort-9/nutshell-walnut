@@ -1,0 +1,22 @@
+{
+  "message1": {
+    "id": "Callan Morrison",
+    "messageText": "blahbidyblah",
+    "uid": "12345"
+  },
+  "message2": {
+    "id": "Michael Clark",
+    "messageText": "blahbidyblahm",
+    "uid": "KedA2LSbmUVjr6M1UJoYiDfEC4I3"
+  },
+  "message3": {
+    "id": "Greg Korte",
+    "messageText": "blahbidyblah",
+    "uid": "KedA2LSbmUVjr6M1UJoYiDfEC4I3"
+  },
+  "message4": {
+    "id": "Adam Barnhard",
+    "messageText": "blahbidyblahl.com",
+    "uid": "KedA2LSbmUVjr6M1UJoYiDfEC4I3"
+  }
+}
