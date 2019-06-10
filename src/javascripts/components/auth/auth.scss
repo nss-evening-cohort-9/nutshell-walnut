@@ -1,25 +1,28 @@
 .authDiv {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.548);
   justify-content: center;
-  max-width: 75%;
+  max-width: 25%;
   margin: 0 auto;
-  border-radius: 5px;
-  margin-top: 15px;
+  padding:30px;
+  border-radius: 15px;
+  margin-top: 30px;
 }
 
 .log-title {
   text-align: center;
   font-weight: bold;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
 }
 
 #google-auth {
   display: flex;
   border: none;
   background-color: transparent;
-  margin: 0 auto;
   justify-content: center;
+  padding: -50px;
 }
 
 .button {
