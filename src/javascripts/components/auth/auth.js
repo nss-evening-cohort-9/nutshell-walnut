@@ -3,7 +3,7 @@ import 'firebase/auth';
 
 import util from '../../helpers/util';
 
-import diaryPrint from '../diary/diary';
+// import diaryPrint from '../diary/diary';
 
 import './auth.scss';
 
@@ -12,7 +12,8 @@ import googleImage from './googlebtn.png';
 const signMeIn = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
-  diaryPrint.diaryPrintToDom(firebase.auth().currentUser.uid);
+  // document.getElementById('navbar-button-diary')
+  // .addEventListener('click', diaryPrint.diaryPrintToDom());
 };
 
 const authBuilder = () => {
