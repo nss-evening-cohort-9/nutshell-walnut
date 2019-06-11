@@ -13,6 +13,7 @@ const init = () => {
   navBar.checkLoginStatus();
   auth.authBuilder();
   messages.messageStringBuilder();
+  messages.newMessageBtn();
   logout.navbarEvents();
 };
 

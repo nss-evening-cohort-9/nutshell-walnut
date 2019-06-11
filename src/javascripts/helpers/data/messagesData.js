@@ -18,4 +18,6 @@ const getMessages = () => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-export default { getMessages };
+const addNewMessage = messageObject => axios.post(`${firebaseUrl}/messages.json`, messageObject);
+
+export default { getMessages, addNewMessage };

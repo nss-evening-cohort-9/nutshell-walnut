@@ -1,5 +1,9 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
+
 
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
@@ -19,4 +23,26 @@ const messageStringBuilder = () => {
   }).catch(err => console.error('could not get messages', err));
 };
 
-export default { messageStringBuilder };
+const createNewMessage = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const newMessage = {
+      username: 'Dem Boiz!',
+      messageText: document.getElementById('textInput').value,
+      uid: firebase.auth().currentUser.uid,
+    };
+    messagesData.addNewMessage(newMessage)
+      .then(() => {
+        document.getElementById('textInput').value = '';
+        messageStringBuilder();
+      })
+      .catch(err => console.error('no new message for you', err));
+  }
+};
+
+const newMessageBtn = () => {
+  $('#textInput').keypress(createNewMessage);
+};
+
+
+export default { messageStringBuilder, newMessageBtn };
