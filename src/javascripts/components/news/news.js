@@ -22,11 +22,11 @@ const addNewsForm = () => {
   domString += '<button type="submit" id="addNews" class="btn btn-outline-primary">Submit</button>';
   domString += '</form>';
   util.printToDom('add-news-form', domString);
+  document.getElementById('news').classList.add('hide');
 };
 
 const addFormEvent = () => {
-  const mmm = document.getElementById('create-news-form');
-  mmm.addEventListener('click', addNewsForm);
+  document.getElementById('create-news-form').addEventListener('click', addNewsForm);
 };
 
 const newsDomStringBulder = (news) => {
