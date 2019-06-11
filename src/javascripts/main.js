@@ -5,7 +5,7 @@ import navBar from './helpers/data/authData';
 import logout from './components/myNavbar/myNavbar';
 import apiKeys from './helpers/apiKeys.json';
 import messages from './components/messages/messages';
-
+// import news from './components/news/news';
 import '../styles/main.scss';
 
 const init = () => {
