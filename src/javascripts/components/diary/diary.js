@@ -44,14 +44,13 @@ const showEntryForm = () => {
   document.getElementById('save-new-entry').addEventListener('click', createNewEntry);
 };
 
-const openEditEntry = () => {
-        <form class="col-6 offset-3">
-        <div class="form-group">
-        <label for="edit-area">Edit Entry</label>
-        <input type="text" class="form-control" id="entry-title" placeholder="Title">
-        </div> </form>
-        
-};
+// const openEditEntry = () => {
+//         <form class="col-6 offset-3">
+//         <div class="form-group">
+//         <label for="edit-area">Edit Entry</label>
+//         <input type="text" class="form-control" id="entry-title" placeholder="Title">
+//         </div> </form>
+// };
 
 const saveEditEntry = (e) => {
   const newEntryText = document.getElementById('edit-form').value;
