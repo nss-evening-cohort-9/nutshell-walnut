@@ -12,13 +12,8 @@ const init = () => {
   firebase.initializeApp(apiKeys.firebaseConfig);
   navBar.checkLoginStatus();
   auth.authBuilder();
-<<<<<<< HEAD
-  messageData.getMessages();
   userLogout.navbarEvents();
-=======
   messages.messageStringBuilder();
-  logout.navbarEvents();
->>>>>>> master
 };
 
 init();
