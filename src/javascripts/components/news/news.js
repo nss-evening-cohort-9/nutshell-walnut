@@ -13,6 +13,7 @@ const newsDomStringBulder = (news) => {
     domString += '</div>';
     domString += '</div>';
   });
+  domString += '</div>';
   util.printToDom('news', domString);
 };
 
