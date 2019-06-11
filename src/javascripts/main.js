@@ -5,6 +5,7 @@ import navBar from './helpers/data/authData';
 import logout from './components/myNavbar/myNavbar';
 import apiKeys from './helpers/apiKeys.json';
 import messageData from './helpers/data/messagesData';
+import events from './components/events/events';
 
 import '../styles/main.scss';
 
@@ -14,6 +15,8 @@ const init = () => {
   auth.authBuilder();
   messageData.getMessages();
   logout.navbarEvents();
+  events.getEvents();
+  events.addEvents();
 };
 
 init();

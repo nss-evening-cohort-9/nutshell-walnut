@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import apiKeys from '../apiKeys.json';
 
-const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
+const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
 const getEvents = () => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/events.json`)
@@ -13,7 +13,7 @@ const getEvents = () => new Promise((resolve, reject) => {
         eventResults[event].id = event;
         events.push(eventResults[event]);
       });
-      console.error(events);
+      // console.error(eventResults);
       resolve(events);
     })
     .catch(err => reject(err));

@@ -6,72 +6,78 @@ import util from '../../helpers/util';
 
 
 const eventDiv = document.getElementById('events');
-// const neweventDiv = document.getElementById('new-event');
+const neweventDiv = document.getElementById('new-events');
 
-// const createNewevent = (e) => {
-//   e.preventDefault();
-//   const newevent = {
-//     title: document.getElementById('title').value,
-//     dayOfWeek: document.getElementById('dayOfWeek').value,
-//     uid: firebase.auth().currentUser.uid,
-//     dateOfMonth: document.getElementById('dateOfMonth').value,
-//     month: document.getElementById('month').value,
-//     imageUrl: document.getElementById('imageUrl'),
-//     description: document.getElementById('description'),
-//   };
-//   eventsData.addNewevent(newevent)
-//     .then(() => {
-//       document.getElementById('name').value = '';
-//       document.getElementById('email').value = '';
-//       eventDiv.classList.remove('hide');
-//       neweventDiv.classList.add('hide');
-//       getEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
-//     })
-//     .catch(err => console.error('no new events', err));
-//   console.error(newevent);
-// };
+const createNewevent = (e) => {
+  e.preventDefault();
+  const newevent = {
+    title: document.getElementById('title').value,
+    dayOfWeek: document.getElementById('dayOfWeek').value,
+    uid: firebase.auth().currentUser.uid,
+    dateOfMonth: document.getElementById('dateOfMonth').value,
+    month: document.getElementById('month').value,
+    imageUrl: document.getElementById('imageUrl'),
+    description: document.getElementById('description'),
+  };
+  eventsData.addNewevent(newevent)
+    .then(() => {
+      document.getElementById('title').value = '';
+      document.getElementById('dayOfWeek').value = '';
+      document.getElementById('dateOfMonth').value = '';
+      document.getElementById('month').value = '';
+      document.getElementById('imageUrl').value = '';
+      document.getElementById('description').value = '';
+      eventDiv.classList.remove('hide');
+      neweventDiv.classList.add('hide');
+      getEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
+    })
+    .catch(err => console.error('no new events', err));
+  console.error(newevent);
+};
 
-// const newEventButton = () => {
-//   eventDiv.classList.add('hide');
-//   neweventDiv.classList.remove('hide');
-//   document.getElementById('saveNewevent').addEventListener('click', createNewevent);
-// };
+const newEventButton = () => {
+  eventDiv.classList.add('hide');
+  neweventDiv.classList.remove('hide');
+  document.getElementById('saveNewevent').addEventListener('click', createNewevent);
+};
 
-// const deleteEventsEvent = (e) => {
-//   const eventId = e.target.id;
-//   eventsData.deleteevent(eventId)
-//     .then(() => getevents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
-//     .catch(err => console.error('no deletion', err));
-// };
+const deleteEventsEvent = (e) => {
+  const eventId = e.target.id.split('.')[1];
+  eventsData.deleteEvent(eventId)
+    .then(() => getEvents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .catch(err => console.error('no deletion', err));
+};
 
 
-// const addEvents = () => {
-//   document.getElementById('add-event-button').addEventListener('click', newEventButton);
-//   const deleteButtons = document.getElementsByClassName('delete-event');
-//   for (let i = 0; i < deleteButtons.length; i += 1) {
-//     deleteButtons[i].addEventListener('click', deleteEventsEvent);
-//   }
-// };
+const addEvents = () => {
+  const addbtn = document.getElementsByClassName('add-event-button');
+  Array.from(addbtn).forEach((onebtn) => {
+    onebtn.addEventListener('click', newEventButton);
+  });
+  const deleteButtons = document.getElementsByClassName('delete-event');
+  Array.from(deleteButtons).forEach((onedlt) => {
+    onedlt.addEventListener('click', deleteEventsEvent);
+  });
+};
 
 const showEvents = (events) => {
   let domString = '<div class="col-6 offset-3">';
-  domString += '<h2>Events</h2>';
-  domString += '<button id="add-event-button" class="btn btn-info">Add Event</button>';
   events.forEach((event) => {
     console.error(event);
-    let domString = '';
     domString += `<div>${event.title}</div>`;
-  util.printToDom('events', domString);
-  addEvents();
-});
-
+    domString += '<button class="add-event-button">Add</button>';
+    domString += `<button class="delete-event" id="dlt-btn.${event.id}">Delete</button>`;
+    util.printToDom('events', domString);
+    addEvents();
+  });
+};
 
 const getEvents = () => {
   eventsData.getEvents()
     .then((events) => {
-          showevents();
-        })
+      showEvents(events);
+    })
     .catch(err => console.error('no events', err));
-}
+};
 
-// export default { getEvents };
+export default { getEvents, addEvents };
