@@ -6,15 +6,17 @@ import util from '../../helpers/util';
 import diaryData from '../../helpers/data/diaryData';
 
 const saveEditEntry = (e) => {
-  const newEntryText = document.getElementById('edit-form').value;
+  const newEntryText = document.getElementById('edit-area').value;
+  console.error(e.target.id);
   const entryId = e.target.id.split('.')[1];
   diaryData.getDiariesByUid(firebase.auth().currentUser.uid)
     .then((entries) => {
       entries.forEach((entry) => {
         if (entry.id === entryId) {
-          const entryKeys = Object.keys(entry);
-          entryKeys.entryText = newEntryText;
-          diaryData.editDiaryEntry(entryId, entryKeys);
+          const currentEntry = entry;
+          currentEntry.entryText = newEntryText;
+          console.error(currentEntry);
+          diaryData.editDiaryEntry(entryId, currentEntry);
         }
       });
     })
@@ -22,16 +24,18 @@ const saveEditEntry = (e) => {
 };
 
 
-const openEditEntry = (entry) => {
+const openEditEntry = (e) => {
+  const entryId = e.target.id.split('.')[1];
+  const entryText = document.getElementById(entryId).innerHTML;
   let domString = '';
   domString += '<form class="col-6 offset-3">';
   domString += '<div id="edit-form" class="form-group">';
   domString += '<label for="edit-area">Edit Entry</label>';
-  domString += '<input type="text" class="form-control" id="edit-area">';
+  domString += `<input type="text" class="form-control" id="edit-area" value="${entryText}">`;
   domString += '</div> </form>';
-  domString += `<button id="save-entry-btn.${entry.id}" class="btn btn-info">Save Entry</button>`;
+  domString += `<button id="save-entry-btn.${entryId}" class="btn btn-info">Save Entry</button>`;
   util.printToDom('diary-entries', domString);
-  document.getElementById(`save-entry-btn.${entry.id}`).addEventListener('click', saveEditEntry);
+  document.getElementById(`save-entry-btn.${entryId}`).addEventListener('click', saveEditEntry);
 };
 
 const addEditEvents = () => {
@@ -47,7 +51,7 @@ const diaryPrintToDom = (uid) => {
     entries.forEach((entry) => {
       domString += `<h3>${entry.title}</h3>`;
       domString += `<h3>${entry.date}</h3>`;
-      domString += `<h3>${entry.entryText}</h3>`;
+      domString += `<h3 id="${entry.id}">${entry.entryText}</h3>`;
       domString += `<button id="edit-btn.${entry.id}" class="edit-btn btn btn-warning">Edit Entry</button>`;
       domString += `<button id="delete-btn.${entry.id}" class="delete-btn btn btn-dark">Delete Entry</button>`;
     });
