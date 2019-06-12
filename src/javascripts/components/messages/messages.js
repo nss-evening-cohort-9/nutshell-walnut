@@ -4,12 +4,6 @@ import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 
-// const deleteMessageEvent = (e) => {
-//   const messageId = e.target.id;
-//   messagesData.deleteMessage(messageId)
-//     .then(() => getFriends(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
-//     .catch(err => console.error('no deletion', err));
-// };
 
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
@@ -46,8 +40,17 @@ const createNewMessage = (e) => {
   }
 };
 
-const newMessageBtn = () => {
+const deleteMessageEvent = (e) => {
+  console.error('firing');
+  const messageId = e.target.id;
+  messagesData.deleteMessage(messageId)
+    .then(() => messageStringBuilder() // (firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+      .catch(err => console.error('no deletion', err)));
+};
+
+const messageEvents = () => {
   $('#textInput').keypress(createNewMessage);
+  $('.trashBtn').click(deleteMessageEvent);
   const deleteButtons = document.getElementsByClassName('trashBtn');
   for (let i = 0; i < deleteButtons.length; i += 1) {
     deleteButtons[i].addEventListener('click', deleteMessageEvent);
@@ -55,4 +58,4 @@ const newMessageBtn = () => {
 };
 
 
-export default { messageStringBuilder, newMessageBtn };
+export default { messageStringBuilder, messageEvents };
