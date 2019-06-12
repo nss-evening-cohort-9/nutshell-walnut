@@ -15,7 +15,6 @@ const init = () => {
   userLogout.navbarEvents();
   messages.messageStringBuilder();
   messages.messageEvents();
-  userLogout.navbarEvents();
 };
 
 init();

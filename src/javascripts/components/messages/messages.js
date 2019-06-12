@@ -4,6 +4,18 @@ import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 
+// const messageEvents = () => {
+//   $('#textInput').keypress(createNewMessage);
+//   $('.trashBtn').click(deleteMessageEvent);
+//   const deleteButtons = document.getElementsByClassName('trashBtn');
+//   console.error(deleteButtons);
+//   const deleteBtnArray = Array.from(deleteButtons);
+//   console.error(deleteBtnArray);
+//   for (let i = 0; i < deleteButtons.length; i += 1) {
+//     console.error('this shit work?');
+//     deleteButtons[i].addEventListener('click', deleteMessageEvent);
+//   }
+// };
 
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
@@ -41,7 +53,7 @@ const createNewMessage = (e) => {
 };
 
 const deleteMessageEvent = (e) => {
-  console.error('firing');
+  console.error('fireing');
   const messageId = e.target.id;
   messagesData.deleteMessage(messageId)
     .then(() => messageStringBuilder() // (firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
@@ -53,6 +65,7 @@ const messageEvents = () => {
   $('.trashBtn').click(deleteMessageEvent);
   const deleteButtons = document.getElementsByClassName('trashBtn');
   for (let i = 0; i < deleteButtons.length; i += 1) {
+    console.error('this shit work?');
     deleteButtons[i].addEventListener('click', deleteMessageEvent);
   }
 };
