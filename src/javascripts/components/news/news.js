@@ -74,7 +74,7 @@ const newsDomStringBulder = (news) => {
 const addEditBtnEvent = () => {
   const editBtn = document.getElementsByClassName('edit');
   for (let i = 0; i < editBtn.length; i += 1) {
-    editBtn[i].addEventListener('click', console.error('editNews'));
+    editBtn[i].addEventListener('click', () => console.error('editNews'));
   }
 };
 
