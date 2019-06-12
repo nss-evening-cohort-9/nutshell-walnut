@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import news from '../news/news';
 
 import diaryPrint from '../diary/diary';
 
@@ -28,6 +29,7 @@ const navbarEvents = () => {
       } else if (e.target.id === 'navbar-button-news') {
         messagesDiv.classList.add('hide');
         newsDiv.classList.remove('hide');
+        news.getNews(firebase.auth().currentUser.uid);
         diaryDiv.classList.add('hide');
         eventDiv.classList.add('hide');
       } else if (e.target.id === 'navbar-button-events') {
@@ -45,6 +47,7 @@ const navbarEvents = () => {
       }
     });
   }
+  // news.getNews(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
 };
 
 export default { navbarEvents };
