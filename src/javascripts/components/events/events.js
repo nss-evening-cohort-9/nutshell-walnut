@@ -35,7 +35,7 @@ const createNewevent = (e) => {
 };
 
 const newEventButton = () => {
-  // eventDiv.classList.add('hide');
+  eventDiv.classList.add('eventafter');
   neweventDiv.classList.remove('hide');
   document.getElementById('saveNewevent').addEventListener('click', createNewevent);
 };
@@ -50,7 +50,6 @@ const deleteEventsEvent = (e) => {
 const cancelAddEvent = () => {
   getEvents(); // eslint-disable-line no-use-before-define
 };
-
 const addEvents = () => {
   const addbtn = document.getElementsByClassName('add-event-button');
   Array.from(addbtn).forEach((onebtn) => {
@@ -77,9 +76,8 @@ const showEvents = (events) => {
     domString += `<h2>${event.title}</h2>`;
     domString += `<div><img src="${event.imageUrl}"></div>`;
     domString += `<div>${event.description}</div>`;
+    domString += `<button class="delete-event btn btn-warning" id="dlt-btn.${event.id}">Delete this event?</button>`;
     domString += '</div>';
-    domString += '<div class="buttonBottomDiv">';
-    domString += `<button class="delete-event btn btn-warning" id="dlt-btn.${event.id}">X</button>`;
     domString += '</div>';
   });
   domString += '<button class="add-event-button btn btn-warning">Add</button>';
