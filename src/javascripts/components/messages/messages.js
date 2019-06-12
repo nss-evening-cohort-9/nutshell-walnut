@@ -4,6 +4,12 @@ import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 
+// const deleteMessageEvent = (e) => {
+//   const messageId = e.target.id;
+//   messagesData.deleteMessage(messageId)
+//     .then(() => getFriends(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+//     .catch(err => console.error('no deletion', err));
+// };
 
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
@@ -14,8 +20,8 @@ const messageStringBuilder = () => {
       domString += '<div class="card">';
       domString += `<h3>${message.username}:</h3>`;
       domString += `<h5>${message.messageText}</h5>`;
-      domString += `<button type="submit" id="delete${message.id}" class="btn btn-outline-danger trashBtn">delete</button>`;
-      domString += `<button type="submit" id="edit${message.id}" class="btn btn-outline-warning changeBtn">edit message</button>`;
+      domString += `<button type="submit" id="${message.id}" class="btn btn-outline-danger trashBtn">delete</button>`;
+      domString += `<button type="submit" id="edit.${message.id}" class="btn btn-outline-warning changeBtn">edit message</button>`;
       domString += '</div>';
     });
     domString += '</div>';
@@ -42,6 +48,10 @@ const createNewMessage = (e) => {
 
 const newMessageBtn = () => {
   $('#textInput').keypress(createNewMessage);
+  const deleteButtons = document.getElementsByClassName('trashBtn');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteMessageEvent);
+  }
 };
 
 
