@@ -52,12 +52,19 @@ const addFormEvent = () => {
   addNewsBtn.addEventListener('click', addNewsForm);
 };
 
+const addBtnEvent = () => {
+  const editBtn = document.getElementsByClassName('edit');
+  for (let i = 0; i < editBtn.length; i += 1) {
+    editBtn[i].addEventListener('click', () => addNewsForm());
+  }
+};
+
 const newsDomStringBulder = (news) => {
   let domString = '<div class = "container container-news d-flex hide">';
   news.forEach((newsItem) => {
     domString += '<div class = "box card">';
     domString += '<div class = "content">';
-    domString += '<h2>01</h2>';
+    domString += `<h2>0${news.indexOf(newsItem)}</h2>`;
     domString += `<div class="card-title">${newsItem.title}</div>`;
     domString += `<p class="">${newsItem.synopsis}</p>`;
     domString += `<a href="${newsItem.url}">Read more</a>`;
@@ -69,13 +76,7 @@ const newsDomStringBulder = (news) => {
   domString += '<button type="submit" id="create-news-form" class="btn btn-outline-danger">Add Article</button>';
   util.printToDom('news', domString);
   addFormEvent();
-};
-
-const addEditBtnEvent = () => {
-  const editBtn = document.getElementsByClassName('edit');
-  for (let i = 0; i < editBtn.length; i += 1) {
-    editBtn[i].addEventListener('click', () => console.error('editNews'));
-  }
+  addBtnEvent();
 };
 
 const getNews = (uid) => {
@@ -92,5 +93,4 @@ export default {
   newsDomStringBulder,
   getNews,
   addFormEvent,
-  addEditBtnEvent,
 };
