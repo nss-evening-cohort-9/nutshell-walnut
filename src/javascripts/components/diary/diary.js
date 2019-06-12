@@ -7,7 +7,6 @@ import diaryData from '../../helpers/data/diaryData';
 
 const saveEditEntry = (e) => {
   const newEntryText = document.getElementById('edit-area').value;
-  console.error(e.target.id);
   const entryId = e.target.id.split('.')[1];
   diaryData.getDiariesByUid(firebase.auth().currentUser.uid)
     .then((entries) => {
@@ -15,21 +14,20 @@ const saveEditEntry = (e) => {
         if (entry.id === entryId) {
           const currentEntry = entry;
           currentEntry.entryText = newEntryText;
-          console.error(currentEntry);
           diaryData.editDiaryEntry(entryId, currentEntry);
         }
       });
+      diaryPrintToDom(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('could not edit entry', err));
 };
-
 
 const openEditEntry = (e) => {
   const entryId = e.target.id.split('.')[1];
   const entryText = document.getElementById(entryId).innerHTML;
   let domString = '';
-  domString += '<form class="col-6 offset-3">';
-  domString += '<div id="edit-form" class="form-group">';
+  domString += '<form id="edit-form" class="col-6 offset-3">';
+  domString += '<div class="form-group">';
   domString += '<label for="edit-area">Edit Entry</label>';
   domString += `<input type="text" class="form-control" id="edit-area" value="${entryText}">`;
   domString += '</div> </form>';
@@ -49,11 +47,15 @@ const diaryPrintToDom = (uid) => {
   diaryData.getDiariesByUid(uid).then((entries) => {
     let domString = '';
     entries.forEach((entry) => {
+      domString += '<div class="card" style="width: 18rem;">';
+      domString += '<div class="card-body">';
       domString += `<h3>${entry.title}</h3>`;
       domString += `<h3>${entry.date}</h3>`;
       domString += `<h3 id="${entry.id}">${entry.entryText}</h3>`;
       domString += `<button id="edit-btn.${entry.id}" class="edit-btn btn btn-warning">Edit Entry</button>`;
       domString += `<button id="delete-btn.${entry.id}" class="delete-btn btn btn-dark">Delete Entry</button>`;
+      domString += '</div>';
+      domString += '</div>';
     });
     domString += '<button id="display-entry-form" class="btn btn-danger">New Entry</button>';
     util.printToDom('diary-entries', domString);
@@ -82,6 +84,7 @@ const showEntryForm = () => {
   document.getElementById('display-entry-form').classList.add('hide');
   document.getElementById('new-diary-entry').classList.remove('hide');
   document.getElementById('save-new-entry').addEventListener('click', createNewEntry);
+  document.getElementById('edit-form').innerHTML = '';
 };
 
 export default { diaryPrintToDom, createNewEntry };
