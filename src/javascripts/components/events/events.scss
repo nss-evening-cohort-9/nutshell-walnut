@@ -1,0 +1,43 @@
+.eventwrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: baseline;
+}
+
+.events{
+  background-color: rgba(255, 255, 255, 0.568);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top:50px;
+}
+
+.events-title{
+  font-family: 'Gloria Hallelujah', cursive;
+  font-weight: bolder;
+}
+
+.dateSideDiv{
+  background-color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.eventSideDiv{
+  background-color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+  max-width: 425px;
+}
+
+.btn {
+  margin: 5px;
+}

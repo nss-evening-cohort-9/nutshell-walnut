@@ -32,11 +32,10 @@ const createNewevent = (e) => {
       getEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('no new events', err));
-  console.error(newevent);
 };
 
 const newEventButton = () => {
-  eventDiv.classList.add('hide');
+  // eventDiv.classList.add('hide');
   neweventDiv.classList.remove('hide');
   document.getElementById('saveNewevent').addEventListener('click', createNewevent);
 };
@@ -48,6 +47,9 @@ const deleteEventsEvent = (e) => {
     .catch(err => console.error('no deletion', err));
 };
 
+const cancelAddEvent = () => {
+  getEvents(); // eslint-disable-line no-use-before-define
+};
 
 const addEvents = () => {
   const addbtn = document.getElementsByClassName('add-event-button');
@@ -58,18 +60,32 @@ const addEvents = () => {
   Array.from(deleteButtons).forEach((onedlt) => {
     onedlt.addEventListener('click', deleteEventsEvent);
   });
+  const cancelButton = document.getElementById('cancel-btn');
+  cancelButton.addEventListener('click', cancelAddEvent);
 };
 
 const showEvents = (events) => {
-  let domString = '<div class="col-6 offset-3">';
+  let domString = '<h3 class="events-title">My Events</h3>';
   events.forEach((event) => {
-    console.error(event);
-    domString += `<div>${event.title}</div>`;
-    domString += '<button class="add-event-button">Add</button>';
-    domString += `<button class="delete-event" id="dlt-btn.${event.id}">Delete</button>`;
-    util.printToDom('events', domString);
-    addEvents();
+    domString += '<div class="eventwrapper">';
+    domString += '<div class="dateSideDiv col-3">';
+    domString += `<h6>${event.dayOfWeek}</h6>`;
+    domString += `<h1>${event.dateOfMonth}</h1>`;
+    domString += `<h6>${event.month}</h6>`;
+    domString += '</div>';
+    domString += '<div class="eventSideDiv col-5">';
+    domString += `<h2>${event.title}</h2>`;
+    domString += `<div><img src="${event.imageUrl}"></div>`;
+    domString += `<div>${event.description}</div>`;
+    domString += '</div>';
+    domString += '<div class="buttonBottomDiv">';
+    domString += `<button class="delete-event btn btn-warning" id="dlt-btn.${event.id}">X</button>`;
+    domString += '</div>';
   });
+  domString += '<button class="add-event-button btn btn-warning">Add</button>';
+  domString += '</div>';
+  util.printToDom('events', domString);
+  addEvents();
 };
 
 const getEvents = () => {
