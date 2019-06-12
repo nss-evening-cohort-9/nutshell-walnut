@@ -1,9 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import diaryPrint from '../diary/diary';
+
 const messagesDiv = document.getElementById('messages');
 const newsDiv = document.getElementById('news');
-const diaryDiv = document.getElementById('diary');
+const diaryDiv = document.getElementById('diary-entries');
 const eventDiv = document.getElementById('events');
 
 const navbarEvents = () => {
@@ -12,7 +14,12 @@ const navbarEvents = () => {
     navLinks[i].addEventListener('click', (e) => {
       e.preventDefault();
       if (e.target.id === 'navbar-button-logout') {
-        firebase.auth().signOut();
+        e.preventDefault();
+        firebase.auth().signOut()
+          .then(() => {
+            console.error('bye');
+          })
+          .catch(err => console.error('no', err));
       } else if (e.target.id === 'navbar-button-messages') {
         messagesDiv.classList.remove('hide');
         newsDiv.classList.add('hide');
@@ -33,6 +40,8 @@ const navbarEvents = () => {
         newsDiv.classList.add('hide');
         diaryDiv.classList.remove('hide');
         eventDiv.classList.add('hide');
+        document.getElementById('diary-entries').classList.remove('hide');
+        diaryPrint.diaryPrintToDom(firebase.auth().currentUser.uid);
       }
     });
   }
