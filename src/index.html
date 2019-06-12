@@ -35,11 +35,31 @@
 <body>
   <div id="auth" class="authDiv shadow-sm"></div>
   <div id="messages" class = "hide">
-      <input class="form-control" type="text" id="textInput" placeholder="Let'em know!"></input>
-    <div id="innerMessages"></div>
-  </div>
+    <input class="form-control" type="text" id="textInput" placeholder="Let'em know!"></input>
+  <div id="innerMessages"></div>
+</div>
   <div id="news" class = "hide">news</div>
-  <div id="diary" class = "hide">diary</div>
+  <!-- form for new diary entry  -->
+  <div id="new-diary-entry" class="hide">
+      <button class="btn btn-danger">Add New Entry</button>
+      <form class="col-6 offset-3">
+        <div class="form-group">
+          <label for="entry-title">Title</label>
+          <input type="text" class="form-control" id="entry-title" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <label for="entry-date">Date</label>
+          <input type="text" class="form-control" id="entry-date" placeholder="Jan. 1, 1999">
+        </div>
+        <div class="form-group">
+          <label for="entry-text">Entry</label>
+          <input type="text" class="form-control" id="entry-text" placeholder="What's on your mind?">
+        </div>
+        <button type="button" id="save-new-entry" class="btn btn-primary">Save Entry</button>
+      </form>
+    </div>
+    <!-- listed diary entries according to current user uid -->
+    <div id="diary-entries" class="hide"></div>
   <div id="events" class = "hide">event</div>
   <div id="add-news-form" class= ""></div>
 </body>
