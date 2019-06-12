@@ -3,6 +3,8 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
+const addNewArticle = newNews => axios.post(`${firebaseUrl}/news.json`, newNews);
+
 const getNewsByUid = uid => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/news.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
@@ -19,4 +21,4 @@ const getNewsByUid = uid => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-export default { getNewsByUid };
+export default { getNewsByUid, addNewArticle };
