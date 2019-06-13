@@ -5,6 +5,13 @@ import util from '../../helpers/util';
 
 import diaryData from '../../helpers/data/diaryData';
 
+const deleteEntry = (e) => {
+  const entryId = e.target.id.split('.')[1];
+  diaryData.deleteEntry(entryId)
+    .then(() => diaryPrintToDom(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .catch(err => console.error('no deletion', err));
+};
+
 const saveEditEntry = (e) => {
   const newEntryText = document.getElementById('edit-area').value;
   const entryId = e.target.id.split('.')[1];
@@ -17,9 +24,9 @@ const saveEditEntry = (e) => {
           diaryData.editDiaryEntry(entryId, currentEntry);
         }
       });
-      diaryPrintToDom(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('could not edit entry', err));
+  setTimeout(() => { diaryPrintToDom(firebase.auth().currentUser.uid); }, 500); // eslint-disable-line no-use-before-define
 };
 
 const openEditEntry = (e) => {
@@ -36,10 +43,14 @@ const openEditEntry = (e) => {
   document.getElementById(`save-entry-btn.${entryId}`).addEventListener('click', saveEditEntry);
 };
 
-const addEditEvents = () => {
+const addEvents = () => {
   const editBtns = document.getElementsByClassName('edit-btn');
   for (let i = 0; i < editBtns.length; i += 1) {
     editBtns[i].addEventListener('click', openEditEntry);
+  }
+  const deleteBtns = document.getElementsByClassName('delete-btn');
+  for (let i = 0; i < deleteBtns.length; i += 1) {
+    deleteBtns[i].addEventListener('click', deleteEntry);
   }
 };
 
@@ -61,7 +72,7 @@ const diaryPrintToDom = (uid) => {
     util.printToDom('diary-entries', domString);
     document.getElementById('display-entry-form').addEventListener('click', showEntryForm); // eslint-disable-line no-use-before-define
     document.getElementById('new-diary-entry').classList.add('hide');
-    addEditEvents();
+    addEvents();
   })
     .catch(err => console.error('could not get diary entries', err));
 };
@@ -74,9 +85,12 @@ const createNewEntry = () => {
     uid: firebase.auth().currentUser.uid,
   };
   diaryData.addNewEntry(newEntry);
-  diaryData.getDiariesByUid(newEntry.uid);
-  diaryPrintToDom(newEntry.uid);
-  document.getElementById('diary-entries').classList.remove('hide');
+  diaryData.getDiariesByUid(newEntry.uid)
+    .then(() => {
+      diaryPrintToDom(newEntry.uid);
+      document.getElementById('diary-entries').classList.remove('hide');
+    })
+    .catch(err => console.error('could not get diary entries', err));
 };
 
 const showEntryForm = () => {
@@ -84,7 +98,6 @@ const showEntryForm = () => {
   document.getElementById('display-entry-form').classList.add('hide');
   document.getElementById('new-diary-entry').classList.remove('hide');
   document.getElementById('save-new-entry').addEventListener('click', createNewEntry);
-  document.getElementById('edit-form').innerHTML = '';
 };
 
 export default { diaryPrintToDom, createNewEntry };

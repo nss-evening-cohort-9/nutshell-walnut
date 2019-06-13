@@ -27,9 +27,9 @@ const messageStringBuilder = () => {
 const deleteMessageEvent = (e) => {
   console.error('firing');
   const myId = firebase.auth().currentUser.uid;
-  const messageId = e.target.id;
-  console.error(messageId);
-  if (messageId.classList[0] === myId) {
+  if (e.target.classList[0] === myId) {
+    const messageId = e.target.id;
+    console.error(messageId);
     messagesData.deleteMessage(messageId)
       .then(() => messageStringBuilder()) // eslint-disable-line no-use-before-define
       .catch(err => console.error('no deletion', err));
