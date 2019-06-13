@@ -52,10 +52,23 @@ const addFormEvent = () => {
   addNewsBtn.addEventListener('click', addNewsForm);
 };
 
+const createNewNews = () => {
+//   e.preventDefault();
+//   document.getElementById('add-news-form').classList.remove('hide');
+// const newNews = {
+//   title: document.getElementById('news-title').value,
+//   url: document.getElementById('news-url').value,
+//   synopsis: document.getElementById('synopsis').value,
+//   uid: firebase.auth().currentUser.uid,
+// };
+// newsData.add
+};
+
 const addBtnEvent = () => {
   const editBtn = document.getElementsByClassName('edit');
   for (let i = 0; i < editBtn.length; i += 1) {
-    editBtn[i].addEventListener('click', () => addNewsForm());
+    editBtn[i].addEventListener('click', addNewsForm);
+    createNewNews();
   }
 };
 
