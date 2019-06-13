@@ -22,4 +22,11 @@ const addNewevent = eventObject => axios.post(`${firebaseUrl}/events.json`, even
 
 const deleteEvent = eventId => axios.delete(`${firebaseUrl}/events/${eventId}.json`);
 
-export default { addNewevent, getEvents, deleteEvent };
+const editEventEntry = (objectId, editedObject) => axios.put(`${firebaseUrl}/events/${objectId}.json`, editedObject);
+
+export default {
+  addNewevent,
+  getEvents,
+  deleteEvent,
+  editEventEntry,
+};

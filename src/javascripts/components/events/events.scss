@@ -1,7 +1,6 @@
 .eventwrapper{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: baseline;
+  width:600px;
 }
 
 .events{
@@ -11,7 +10,6 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 10px;
-  max-width: 600px;
   margin: 0 auto;
   margin-top:50px;
 }
@@ -25,20 +23,33 @@
   background-color: white;
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
+  height: auto;
 }
 
 .eventSideDiv{
   background-color: white;
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
   max-width: 425px;
 }
 
-.btn {
+.eventimg{
+  width: 400px;
+}
+
+.delete-event {
+  display: flex;
+  margin: 5px;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+
+.edit-btn{
   display: flex;
   margin: 5px;
   display: inline-flex;
@@ -47,5 +58,5 @@
 }
 
 .eventafter{
-  background-color: yellow;
+  // background-color: yellow;
 }
