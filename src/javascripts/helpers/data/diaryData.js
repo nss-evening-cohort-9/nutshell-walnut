@@ -21,4 +21,8 @@ const getDiariesByUid = uid => new Promise((resolve, reject) => {
 
 const editDiaryEntry = (objectId, editedObject) => axios.put(`${firebaseUrl}/diary/${objectId}.json`, editedObject);
 
-export default { getDiariesByUid, addNewEntry, editDiaryEntry };
+const deleteEntry = entryId => axios.delete(`${firebaseUrl}/diary/${entryId}.json`);
+
+export default {
+  getDiariesByUid, addNewEntry, editDiaryEntry, deleteEntry,
+};
