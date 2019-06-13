@@ -4,18 +4,6 @@ import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 
-// const messageEvents = () => {
-//   $('#textInput').keypress(createNewMessage);
-//   $('.trashBtn').click(deleteMessageEvent);
-//   const deleteButtons = document.getElementsByClassName('trashBtn');
-//   console.error(deleteButtons);
-//   const deleteBtnArray = Array.from(deleteButtons);
-//   console.error(deleteBtnArray);
-//   for (let i = 0; i < deleteButtons.length; i += 1) {
-//     console.error('this shit work?');
-//     deleteButtons[i].addEventListener('click', deleteMessageEvent);
-//   }
-// };
 
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
@@ -32,7 +20,16 @@ const messageStringBuilder = () => {
     });
     domString += '</div>';
     util.printToDom('innerMessages', domString);
+    $('.trashBtn').click(deleteMessageEvent); // eslint-disable-line no-use-before-define
   }).catch(err => console.error('could not get messages', err));
+};
+
+const deleteMessageEvent = (e) => {
+  console.error('fireing');
+  const messageId = e.target.id;
+  messagesData.deleteMessage(messageId)
+    .then(() => messageStringBuilder() // eslint-disable-line no-use-before-define
+      .catch(err => console.error('no deletion', err)));
 };
 
 const createNewMessage = (e) => {
@@ -52,22 +49,8 @@ const createNewMessage = (e) => {
   }
 };
 
-const deleteMessageEvent = (e) => {
-  console.error('fireing');
-  const messageId = e.target.id;
-  messagesData.deleteMessage(messageId)
-    .then(() => messageStringBuilder() // (firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
-      .catch(err => console.error('no deletion', err)));
-};
-
 const messageEvents = () => {
   $('#textInput').keypress(createNewMessage);
-  $('.trashBtn').click(deleteMessageEvent);
-  const deleteButtons = document.getElementsByClassName('trashBtn');
-  for (let i = 0; i < deleteButtons.length; i += 1) {
-    console.error('this shit work?');
-    deleteButtons[i].addEventListener('click', deleteMessageEvent);
-  }
 };
 
 
