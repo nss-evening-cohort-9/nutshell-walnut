@@ -14,7 +14,7 @@ const messageStringBuilder = () => {
       domString += '<div class="card">';
       domString += `<h3>${message.username}:</h3>`;
       domString += `<h5>${message.messageText}</h5>`;
-      domString += `<button type="submit" id="${message.id}" class="btn btn-outline-danger trashBtn">delete</button>`;
+      domString += `<button type="submit" id="${message.id}" class="${message.uid} btn btn-outline-danger trashBtn">delete</button>`;
       domString += `<button type="submit" id="edit.${message.id}" class="btn btn-outline-warning changeBtn">edit message</button>`;
       domString += '</div>';
     });
@@ -25,11 +25,15 @@ const messageStringBuilder = () => {
 };
 
 const deleteMessageEvent = (e) => {
-  console.error('fireing');
+  console.error('firing');
+  const myId = firebase.auth().currentUser.uid;
   const messageId = e.target.id;
-  messagesData.deleteMessage(messageId)
-    .then(() => messageStringBuilder() // eslint-disable-line no-use-before-define
-      .catch(err => console.error('no deletion', err)));
+  console.error(messageId);
+  if (messageId.classList[0] === myId) {
+    messagesData.deleteMessage(messageId)
+      .then(() => messageStringBuilder()) // eslint-disable-line no-use-before-define
+      .catch(err => console.error('no deletion', err));
+  }
 };
 
 const createNewMessage = (e) => {
