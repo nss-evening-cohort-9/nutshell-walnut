@@ -142,7 +142,6 @@ const newsDomStringBulder = (news) => {
 
 // Recieves an array of news by UID from the promise call
 const getNews = (uid) => {
-  console.error('hey');
   newsData.getNewsByUid(uid)
     .then((news) => {
       newsDomStringBulder(news);
