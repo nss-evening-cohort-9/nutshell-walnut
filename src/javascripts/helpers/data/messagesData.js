@@ -22,7 +22,7 @@ const addNewMessage = messageObject => axios.post(`${firebaseUrl}/messages.json`
 
 const deleteMessage = messageId => axios.delete(`${firebaseUrl}/messages/${messageId}.json`);
 
-const editMessage = (messageId, editedMessage) => axios.put(`${firebaseUrl}/diary/${messageId}.json`, editedMessage);
+const editMessage = (messageId, editedMessage) => axios.put(`${firebaseUrl}/messages/${messageId}.json`, editedMessage);
 
 export default {
   getMessages,
