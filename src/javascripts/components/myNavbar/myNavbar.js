@@ -18,6 +18,7 @@ const navbarEvents = () => {
         e.preventDefault();
         firebase.auth().signOut()
           .then(() => {
+            document.getElementById('add-username').classList.add('hide');
             console.error('bye');
             messagesDiv.classList.add('hide');
             newsDiv.classList.add('hide');
