@@ -21,4 +21,6 @@ const getNewsByUid = uid => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-export default { getNewsByUid, addNewArticle };
+const postEditNews = (editId, editedNews) => axios.put(`${firebaseUrl}/news/${editId}.json`, editedNews);
+
+export default { getNewsByUid, addNewArticle, postEditNews };

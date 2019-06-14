@@ -49,26 +49,68 @@ const addNewsForm = () => {
 
 const addFormEvent = () => {
   const addNewsBtn = document.getElementById('create-news-form');
-  addNewsBtn.addEventListener('click', addNewsForm);
+  addNewsBtn.addEventListener('click', () => {
+    addNewsForm();
+  });
 };
 
-const createNewNews = () => {
-//   e.preventDefault();
-//   document.getElementById('add-news-form').classList.remove('hide');
-// const newNews = {
-//   title: document.getElementById('news-title').value,
-//   url: document.getElementById('news-url').value,
-//   synopsis: document.getElementById('synopsis').value,
-//   uid: firebase.auth().currentUser.uid,
-// };
-// newsData.add
+const submitEdit = (e) => {
+  e.preventDefault();
+  const entryBtnId = e.target.id.split('.')[1];
+  const editedNews = {
+    title: document.getElementById(`news-title.${entryBtnId}`).value,
+    url: document.getElementById(`news-url.${entryBtnId}`).value,
+    synopsis: document.getElementById(`synopsis.${entryBtnId}`).value,
+    uid: firebase.auth().currentUser.uid,
+  };
+  newsData.getNewsByUid(firebase.auth().currentUser.uid)
+    .then((news) => {
+      news.forEach((newsItem) => {
+        if (newsItem.id === entryBtnId) {
+          newsData.postEditNews(entryBtnId, editedNews);
+        }
+      });
+    })
+    .catch(err => console.error('could not update', err));
+  setTimeout(() => { getNews(firebase.auth().currentUser.uid); }, 500); // eslint-disable-line no-use-before-define
+  document.getElementById('edit-news-form').classList.add('hide');
 };
+
+const editNews = (e) => {
+  document.getElementById('news').classList.add('hide');
+  const editId = e.target.id.split('.')[1];
+  const submitId = e.target.id.split('.')[1];
+  const editTitle = document.getElementById('newsTitle').innerHTML;
+  const editUrl = document.getElementById('newsUrl').href;
+  const editSynopsis = document.getElementById('newsSynopsis').innerHTML;
+  let domString = '';
+  domString += '<form class="col-6 offset-3" autocomplete = "on">';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += '<label for="news-title">News Title:</label>';
+  domString += `<input id="news-title.${editId}" type="text" class="form-control" value="${editTitle}">`;
+  domString += '<i class="fa fa-film fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += '<label for="news-url">Link:</label>';
+  domString += `<input id="news-url.${editId}" type="url" class="form-control" value="${editUrl}" size="30" >`;
+  domString += '<i class="fa fa-photo fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += '<label for="synopsis">Synopsis:</label>';
+  domString += `<input id="synopsis.${editId}" type="text" class="form-control" value="${editSynopsis}">`;
+  domString += '<i class="fa fa-star-half-full fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += `<button type="submit" id="addNews.${submitId}" class="btn btn-outline-primary">Submit</button>`;
+  domString += '</form>';
+  util.printToDom('edit-news-form', domString);
+  document.getElementById(`addNews.${submitId}`).addEventListener('click', submitEdit);
+};
+
 
 const addBtnEvent = () => {
   const editBtn = document.getElementsByClassName('edit');
   for (let i = 0; i < editBtn.length; i += 1) {
-    editBtn[i].addEventListener('click', addNewsForm);
-    createNewNews();
+    editBtn[i].addEventListener('click', editNews);
   }
 };
 
@@ -78,10 +120,10 @@ const newsDomStringBulder = (news) => {
     domString += '<div class = "box card">';
     domString += '<div class = "content">';
     domString += `<h2>0${news.indexOf(newsItem)}</h2>`;
-    domString += `<div class="card-title">${newsItem.title}</div>`;
-    domString += `<p class="">${newsItem.synopsis}</p>`;
-    domString += `<a href="${newsItem.url}">Read more</a>`;
-    domString += '<button type="submit" id="editNewsForm" class="btn btn-outline-info edit">Edit</button>';
+    domString += `<div id="newsTitle" class="card-title">${newsItem.title}</div>`;
+    domString += `<p id="newsSynopsis" class="">${newsItem.synopsis}</p>`;
+    domString += `<a href="${newsItem.url}" id="newsUrl">Read more</a>`;
+    domString += `<button id="editNewsForm.${newsItem.id}" class="btn btn-outline-info edit">Edit</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -98,6 +140,7 @@ const getNews = (uid) => {
     .then((news) => {
       newsDomStringBulder(news);
       document.getElementById('news').classList.remove('hide');
+      return news;
     })
     .catch(err => console.error('no news read', err));
 };
