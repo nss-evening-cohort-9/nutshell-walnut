@@ -21,4 +21,11 @@ const getNewsByUid = uid => new Promise((resolve, reject) => {
 
 const postEditNews = (editId, editedNews) => axios.put(`${firebaseUrl}/news/${editId}.json`, editedNews);
 
-export default { getNewsByUid, addNewArticle, postEditNews };
+const deleteNews = newsId => axios.delete(`${firebaseUrl}/news/${newsId}.json`);
+
+export default {
+  getNewsByUid,
+  addNewArticle,
+  postEditNews,
+  deleteNews,
+};
