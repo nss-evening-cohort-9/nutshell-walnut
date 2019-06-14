@@ -82,26 +82,27 @@ const submitEdit = (e) => {
 
 // prints out the form for editing and pre-populates them with previous info
 const editNews = (e) => {
+  document.getElementById('edit-news-form').classList.remove('hide');
   document.getElementById('news').classList.add('hide');
   const editId = e.target.id.split('.')[1];
   const submitId = e.target.id.split('.')[1];
-  const editTitle = document.getElementById('newsTitle').innerHTML;
-  const editUrl = document.getElementById('newsUrl').href;
-  const editSynopsis = document.getElementById('newsSynopsis').innerHTML;
+  const editTitle = document.getElementById(`newsTitle.${editId}`).innerHTML;
+  const editUrl = document.getElementById(`newsUrl.${editId}`).href;
+  const editSynopsis = document.getElementById(`newsSynopsis.${editId}`).innerHTML;
   let domString = '';
   domString += '<form class="col-6 offset-3" autocomplete = "on">';
   domString += '<div class="inputWithIcon form-group">';
-  domString += '<label for="news-title">News Title:</label>';
+  domString += `<label for="news-title.${editId}">News Title:</label>`;
   domString += `<input id="news-title.${editId}" type="text" class="form-control" value="${editTitle}">`;
   domString += '<i class="fa fa-film fa-lg fa-fw" aria-hidden="true"></i>';
   domString += '</div>';
   domString += '<div class="inputWithIcon form-group">';
-  domString += '<label for="news-url">Link:</label>';
+  domString += `<label for="news-url.${editId}">Link:</label>`;
   domString += `<input id="news-url.${editId}" type="url" class="form-control" value="${editUrl}" size="30" >`;
   domString += '<i class="fa fa-photo fa-lg fa-fw" aria-hidden="true"></i>';
   domString += '</div>';
   domString += '<div class="inputWithIcon form-group">';
-  domString += '<label for="synopsis">Synopsis:</label>';
+  domString += `<label for="synopsis.${editId}">Synopsis:</label>`;
   domString += `<input id="synopsis.${editId}" type="text" class="form-control" value="${editSynopsis}">`;
   domString += '<i class="fa fa-star-half-full fa-lg fa-fw" aria-hidden="true"></i>';
   domString += '</div>';
@@ -126,9 +127,9 @@ const newsDomStringBulder = (news) => {
     domString += '<div class = "box card">';
     domString += '<div class = "content">';
     domString += `<h2>0${news.indexOf(newsItem)}</h2>`;
-    domString += `<div id="newsTitle" class="card-title">${newsItem.title}</div>`;
-    domString += `<p id="newsSynopsis" class="">${newsItem.synopsis}</p>`;
-    domString += `<a href="${newsItem.url}" id="newsUrl">Read more</a>`;
+    domString += `<div id="newsTitle.${newsItem.id}" class="card-title">${newsItem.title}</div>`;
+    domString += `<p id="newsSynopsis.${newsItem.id}" class="">${newsItem.synopsis}</p>`;
+    domString += `<a href="${newsItem.url}" id="newsUrl.${newsItem.id}">Read more</a>`;
     domString += `<button id="editNewsForm.${newsItem.id}" class="btn btn-outline-info edit">Edit</button>`;
     domString += '</div>';
     domString += '</div>';
