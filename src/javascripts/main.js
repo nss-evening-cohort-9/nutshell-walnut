@@ -8,7 +8,6 @@ import events from './components/events/events';
 import messages from './components/messages/messages';
 import news from './components/news/news';
 
-
 import '../styles/main.scss';
 
 const init = () => {

@@ -4,7 +4,6 @@ import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 
-
 const getText = (element) => {
   const firstTag = element[0].firstChild.nodeName;
   const keyTag = new RegExp(firstTag === '#text' ? '<br' : `</${firstTag}`, 'i');
@@ -15,7 +14,6 @@ const getText = (element) => {
 
 const saveMessage = (e) => {
   e.preventDefault();
-  // const messageId = $(e.target).closest('.messageCard').attr('id');
   const rawMessage = $(e.target).closest('.messageCard').find('.message');
   const newMessageText = getText(rawMessage);
   const messageId = e.target.id.split('.')[1];
@@ -38,17 +36,8 @@ const editMessage = (e) => {
   util.handleEditBtn(e);
 };
 
-// const saveMessage = (e) => {
-//   e.preventDefault();
-//   const messageId = $(e.target).closest('.messageCard').attr('id');
-//   const rawMessage = $(e.target).closest('.messageCard').find('.message');
-//   const message = getText(rawMessage);
-//   console.error(message);
-// };
-
 const messageStringBuilder = () => {
   messagesData.getMessages().then((messageResp) => {
-    console.error(messageResp);
     let domString = '';
     domString += '<div class="container">';
     messageResp.forEach((message) => {

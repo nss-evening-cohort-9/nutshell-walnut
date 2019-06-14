@@ -12,7 +12,6 @@ const getMessages = () => new Promise((resolve, reject) => {
         messageResults[message].id = message;
         messages.push(messageResults[message]);
       });
-      console.error(messages);
       resolve(messages);
     })
     .catch(err => reject(err));
