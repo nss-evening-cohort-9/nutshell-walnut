@@ -3,6 +3,7 @@ import 'firebase/auth';
 import util from '../../helpers/util';
 import newsData from '../../helpers/data/newsData';
 
+// creates a news object an add to firebase
 const submitForm = (e) => {
   e.preventDefault();
   const addedNews = {
@@ -22,6 +23,7 @@ const submitForm = (e) => {
     .catch(err => console.error('articles could not update', err));
 };
 
+// prints form to the DOM
 const addNewsForm = () => {
   let domString = '';
   domString += '<form class="col-6 offset-3" autocomplete = "on">';
@@ -47,6 +49,7 @@ const addNewsForm = () => {
   document.getElementById('addNews').addEventListener('click', submitForm);
 };
 
+// Adds event-listeners to the submit button and prints out a form
 const addFormEvent = () => {
   const addNewsBtn = document.getElementById('create-news-form');
   addNewsBtn.addEventListener('click', () => {
@@ -54,6 +57,7 @@ const addFormEvent = () => {
   });
 };
 
+// updates the database with the edits
 const submitEdit = (e) => {
   e.preventDefault();
   const entryBtnId = e.target.id.split('.')[1];
@@ -76,6 +80,7 @@ const submitEdit = (e) => {
   document.getElementById('edit-news-form').classList.add('hide');
 };
 
+// prints out the form for editing and pre-populates them with previous info
 const editNews = (e) => {
   document.getElementById('news').classList.add('hide');
   const editId = e.target.id.split('.')[1];
@@ -106,7 +111,7 @@ const editNews = (e) => {
   document.getElementById(`addNews.${submitId}`).addEventListener('click', submitEdit);
 };
 
-
+// adds event-listener to the edit button
 const addBtnEvent = () => {
   const editBtn = document.getElementsByClassName('edit');
   for (let i = 0; i < editBtn.length; i += 1) {
@@ -114,6 +119,7 @@ const addBtnEvent = () => {
   }
 };
 
+// prints the news card to the DOM
 const newsDomStringBulder = (news) => {
   let domString = '<div class = "container container-news d-flex hide">';
   news.forEach((newsItem) => {
@@ -134,6 +140,7 @@ const newsDomStringBulder = (news) => {
   addBtnEvent();
 };
 
+// Recieves an array of news by UID from the promise call
 const getNews = (uid) => {
   console.error('hey');
   newsData.getNewsByUid(uid)
