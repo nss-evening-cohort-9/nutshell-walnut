@@ -48,9 +48,9 @@ const messageStringBuilder = () => {
       domString += `<div id="${message.id}" class="messageCard card">`;
       domString += `<h5>${message.username}:</h5>`;
       domString += `<p class="message">${message.messageText}</p>`;
-      domString += `<button type="submit" id="delete.${message.id}" class="${message.uid} btn btn-outline-danger messageBtn trashBtn">delete</button>`;
-      domString += `<button type="submit" id="edit.${message.id}" class="${message.uid} btn btn-outline-warning messageBtn changeBtn">edit message</button>`;
-      domString += `<button type="submit" id="save.${message.id}" class="${message.uid} btn btn-outline-danger messageBtn saveBtn hide">save</button>`;
+      domString += `<button type="submit" id="delete.${message.id}" class="${message.uid} btn btn-danger messageBtn trashBtn">delete</button>`;
+      domString += `<button type="submit" id="edit.${message.id}" class="${message.uid} btn btn-warning messageBtn changeBtn">edit message</button>`;
+      domString += `<button type="submit" id="save.${message.id}" class="${message.uid} btn btn-info messageBtn saveBtn hide">save</button>`;
       domString += '</div>';
     });
     domString += '</div>';

@@ -11,8 +11,8 @@ const getUsername = (uid) => {
       const userObjects = users.data;
       const usersArray = Object.values(userObjects);
       const matchingUser = usersArray.find(u => u.uid === uid);
-      console.error(matchingUser);
       const myUsername = matchingUser.username;
+      console.error(myUsername);
       return myUsername;
     })
     .catch(err => console.error('shitaintworking', err));
