@@ -8,6 +8,7 @@ const submitForm = (e) => {
   e.preventDefault();
   const addedNews = {
     title: document.getElementById('news-title').value,
+    imgUrl: 'https://images.unsplash.com/photo-1559666126-84f389727b9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     url: document.getElementById('news-url').value,
     synopsis: document.getElementById('synopsis').value,
     uid: firebase.auth().currentUser.uid,
@@ -63,6 +64,7 @@ const submitEdit = (e) => {
   const entryBtnId = e.target.id.split('.')[1];
   const editedNews = {
     title: document.getElementById(`news-title.${entryBtnId}`).value,
+    imgUrl: 'https://images.unsplash.com/photo-1559666126-84f389727b9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60.jpeg',
     url: document.getElementById(`news-url.${entryBtnId}`).value,
     synopsis: document.getElementById(`synopsis.${entryBtnId}`).value,
     uid: firebase.auth().currentUser.uid,
@@ -112,28 +114,46 @@ const editNews = (e) => {
   document.getElementById(`addNews.${submitId}`).addEventListener('click', submitEdit);
 };
 
+// delete news card function
+const deleteNewsEvent = (e) => {
+  const newsId = e.target.id.split('.')[1];
+  newsData.deleteNews(newsId)
+    .then(() => getNews(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .catch(err => console.error('could not delete news', err));
+};
+
 // adds event-listener to the edit button
 const addBtnEvent = () => {
   const editBtn = document.getElementsByClassName('edit');
   for (let i = 0; i < editBtn.length; i += 1) {
     editBtn[i].addEventListener('click', editNews);
   }
+  const deleteNewsButton = document.getElementsByClassName('delete-news');
+  for (let j = 0; j < deleteNewsButton.length; j += 1) {
+    deleteNewsButton[j].addEventListener('click', deleteNewsEvent);
+  }
 };
 
 // prints the news card to the DOM
 const newsDomStringBulder = (news) => {
-  let domString = '<div class = "container container-news d-flex hide">';
+  let domString = '<div class = "container">';
+  domString += '<div class="container-news d-flex hide">';
   news.forEach((newsItem) => {
-    domString += '<div class = "box card">';
-    domString += '<div class = "content">';
+    domString += '<div class="content container">';
+    domString += `<img src="${newsItem.imgUrl}" id="newsImgUrl.${newsItem.id}" class="card-img-top">`;
+    domString += '<div class = "box">';
     domString += `<h2>0${news.indexOf(newsItem)}</h2>`;
-    domString += `<div id="newsTitle.${newsItem.id}" class="card-title">${newsItem.title}</div>`;
-    domString += `<p id="newsSynopsis.${newsItem.id}" class="">${newsItem.synopsis}</p>`;
+    domString += `<h5 id="newsTitle.${newsItem.id}" class="cardTitle">${newsItem.title}</h5>`;
+    domString += `<p id="newsSynopsis.${newsItem.id}" class="card-text">${newsItem.synopsis}</p>`;
     domString += `<a href="${newsItem.url}" id="newsUrl.${newsItem.id}">Read more</a>`;
+    domString += '</div>';
+    domString += '<div class="footer">';
     domString += `<button id="editNewsForm.${newsItem.id}" class="btn btn-outline-info edit">Edit</button>`;
+    domString += `<button id="deleteNews.${newsItem.id}" class="btn btn-outline-danger delete-news">X</button>`;
     domString += '</div>';
     domString += '</div>';
   });
+  domString += '</div>';
   domString += '</div>';
   domString += '<button type="submit" id="create-news-form" class="btn btn-outline-danger">Add Article</button>';
   util.printToDom('news', domString);
