@@ -21,6 +21,11 @@ const navbarEvents = () => {
         firebase.auth().signOut()
           .then(() => {
             document.getElementById('add-username').classList.add('hide');
+            console.error('bye');
+            messagesDiv.classList.add('hide');
+            newsDiv.classList.add('hide');
+            diaryDiv.classList.add('hide');
+            eventDiv.classList.add('hide');
           })
           .catch(err => console.error('no', err));
       } else if (e.target.id === 'navbar-button-messages') {

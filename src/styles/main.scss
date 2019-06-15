@@ -6,7 +6,9 @@
 @import '../javascripts/components/myNavbar/myNavbar.scss';
 @import './responsive.scss';
 @import '../javascripts/components/events/events.scss';
+@import '../javascripts//components/messages/messages.scss';
 @import './username.scss';
+
 
 * {
   margin: 0px;
@@ -25,4 +27,8 @@ body {
 #textInput {
   margin: 0 auto;
   width: 700px;
+}
+
+.messageBtn {
+  width: 150px;
 }

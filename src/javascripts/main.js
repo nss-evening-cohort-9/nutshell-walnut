@@ -15,6 +15,7 @@ const init = () => {
   auth.authBuilder();
   userLogout.navbarEvents();
   messages.messageStringBuilder();
+  messages.messageEvents();
   events.getEvents();
 };
 
