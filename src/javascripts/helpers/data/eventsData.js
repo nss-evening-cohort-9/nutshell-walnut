@@ -4,14 +4,14 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const getEventsByUid = uid => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/events.json?orderBy="uid"&equalTo="${uid}"`)
+const getEvents = () => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/events.json`)
     .then((results) => {
-      const eventResults = results.data;
+      const eventResults = results.data || {};
       const events = [];
-      Object.keys(eventResults).forEach((eventId) => {
-        eventResults[eventId].id = eventId;
-        events.push(eventResults[eventId]);
+      Object.keys(eventResults).forEach((event) => {
+        eventResults[event].id = event;
+        events.push(eventResults[event]);
       });
       resolve(events);
     })
@@ -22,11 +22,4 @@ const addNewevent = eventObject => axios.post(`${firebaseUrl}/events.json`, even
 
 const deleteEvent = eventId => axios.delete(`${firebaseUrl}/events/${eventId}.json`);
 
-const editEventEntry = (objectId, editedObject) => axios.put(`${firebaseUrl}/events/${objectId}.json`, editedObject);
-
-export default {
-  addNewevent,
-  getEventsByUid,
-  deleteEvent,
-  editEventEntry,
-};
+export default { addNewevent, getEvents, deleteEvent };

@@ -11,44 +11,6 @@ const eventDiv = document.getElementById('events');
 const neweventDiv = document.getElementById('new-events');
 const allEventsDiv = document.getElementById('alleventswrapper');
 
-const saveEditEntry = (e) => {
-  const newEntryText = document.getElementById('edit-area').value;
-  const entryId = e.target.id.split('.')[1];
-  eventsData.getEvents()z
-    .then((entries) => {
-      entries.forEach((entry) => {
-        if (entry.id === entryId) {
-          const currentEntry = entry;
-          currentEntry.entryText = newEntryText;
-          eventsData.editeventEntry(entryId, currentEntry);
-        }
-      });
-      showEvents(); // eslint-disable-line no-use-before-define
-    })
-    .catch(err => console.error('could not edit entry', err));
-};
-
-const openEditEntry = (e) => {
-  const entryId = e.target.id;
-  const entryText = document.getElementById(entryId).innerHTML;
-  let domString = '';
-  domString += '<form id="edit-form" class="col-6 offset-3">';
-  domString += '<div class="form-group">';
-  domString += '<label for="edit-area">Edit Entry</label>';
-  domString += `<input type="text" class="form-control" id="edit-area" value="${entryText}">`;
-  domString += '</div></form>';
-  domString += `<button id="save-entry-btn.${entryId}" class="btn btn-info">Save Entry</button>`;
-  util.printToDom('event-entries', domString);
-  document.getElementById(`save-entry-btn.${entryId}`).addEventListener('click', saveEditEntry);
-};
-
-const addEditEvents = () => {
-  const editBtns = document.getElementsByClassName('edit-btn');
-  for (let i = 0; i < editBtns.length; i += 1) {
-    editBtns[i].addEventListener('click', openEditEntry);
-  }
-};
-
 const createNewevent = (e) => {
   e.preventDefault();
   const newevent = {
@@ -130,7 +92,6 @@ const showEvents = (events) => {
   domString += '</div>';
   util.printToDom('events', domString);
   addEvents();
-  addEditEvents();
 };
 
 const getEvents = () => {
