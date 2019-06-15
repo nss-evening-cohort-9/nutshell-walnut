@@ -7,12 +7,17 @@
 @import './responsive.scss';
 @import '../javascripts/components/events/events.scss';
 @import '../javascripts//components/messages/messages.scss';
+@import './username.scss';
 
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 body {
-  background-color: #886d59;
-  background-image: url('../../assets/nutshellbg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: url('../../assets/nutshellbg.png') no-repeat center center fixed;
+-webkit-background-size: cover;
 }
 
 .hide {

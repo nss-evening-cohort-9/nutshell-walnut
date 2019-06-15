@@ -1,7 +1,6 @@
 .eventwrapper{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: baseline;
+  width:auto;
 }
 
 .events{
@@ -10,34 +9,99 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  border-radius: 10px;
   padding: 10px;
-  max-width: 600px;
   margin: 0 auto;
   margin-top:50px;
+ 
+}
+
+.new-events{
+width: 50%;
+margin: 30px;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.568);
+border-radius: 10px;
+height: 700px;
+margin-top:50px;
 }
 
 .events-title{
   font-family: 'Gloria Hallelujah', cursive;
   font-weight: bolder;
+  margin: 20px;
+  color: #542a0f;
 }
 
 .dateSideDiv{
   background-color: white;
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
+  height: auto;
+  background-color: #886d59ce;
+  color: white;
+  height: 110px;
 }
 
 .eventSideDiv{
-  background-color: white;
+  background-color: rgb(250, 244, 239);
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
   max-width: 425px;
+  color: #886d59ce;
 }
 
-.btn {
-  margin: 5px;
+.eventimg{
+  width: 400px;
 }
+
+.edit-event, .delete-event, .cancel-add-event, .save-new-event{
+  display: flex;
+  margin: 5px;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-size:11px;
+  background-color: #886d59ce;
+  color: white;
+  border: none;
+}
+
+.add-event-button{
+  display: flex;
+  margin: 5px;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-size:14px;
+  background-color: #4d2626;
+  color: rgb(255, 255, 255);
+  border: none;
+}
+
+.allEventsDivAfter{
+  display: flex;
+  }
+
+.eventsAfter{
+  background-color: rgba(255, 255, 255, 0.568);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0px;
+  margin:20px;
+}
+
+label {
+  color: #886d59ce;
+}
+
+.event-form-buttons{
+  display: flex;
+  justify-content: center;
+}
+

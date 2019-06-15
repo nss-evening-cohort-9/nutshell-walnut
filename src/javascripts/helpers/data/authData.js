@@ -10,8 +10,6 @@ const diaryNavbar = document.getElementById('navbar-button-diary');
 const messagesNavbar = document.getElementById('navbar-button-messages');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
-// const eventsDiv = document.getElementById('events');
-// const newEventsDiv = document.getElementById('new-events');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {

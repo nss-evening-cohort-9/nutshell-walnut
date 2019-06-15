@@ -17,9 +17,8 @@ const init = () => {
   userLogout.navbarEvents();
   messages.messageStringBuilder();
   messages.messageEvents();
-  news.addEditBtnEvent();
+  news.addFormEvent();
   events.getEvents();
-  events.addEvents();
 };
 
 init();
