@@ -38,37 +38,45 @@
     <input class="form-control" type="text" id="textInput" placeholder="Let'em know!"></input>
   <div id="innerMessages"></div>
 </div>
-  <div id="news" class = "hide">news</div>
-  <div id="events" class = "hide events col-8"><button class="add-event-button">Add</button></div>
-  <div id="new-events" class="hide"><form>
+  <div id="news" class = "hide"></div>
+  <!-- all events begin -->
+  <div id="alleventswrapper">
+  <div id="events" class ="hide events col-8"><button class="add-event-button">Add</button></div>
+  <div id="new-events" class="hide new-events"><form>
+    <h3 class="events-title">Add New Event</h3>
     <div class="form-group">
       <label for="title">Title of Event</label>
       <input type="title" class="form-control" id="title" placeholder="Fun Fest">
     </div>
     <div class="form-group">
+        <label for="location">Location</label>
+        <input type="location" id="location" class="form-control" placeholder="Memphis, TN">
+      </div>
+    <div class="form-group">
       <label for="dayOfWeek">Day of Week?</label>
       <input type="dayofWeek" id="dayOfWeek" class="form-control" id="dayOfWeek" placeholder="Monday">
     </div>
     <div class="form-group">
-      <label for="dateofMonth">Date?</label>
-      <input type="dateofMonth" id="dateOfMonth" class="form-control" id="dateofMonth" placeholder="17th">
-    </div>
+        <label for="month">Month</label>
+        <input type="text" id="month" class="form-control" id="month" placeholder="October">
+      </div>
     <div class="form-group">
-      <label for="month">Month</label>
-      <input type="text" id="month" class="form-control" id="month" placeholder="October">
+      <label for="dateofMonth">Date?</label>
+      <input type="dateofMonth" id="dateOfMonth" class="form-control" id="dateofMonth" placeholder="17">
     </div>
     <div class="form-group">
       <label for="imageUrl">Image Url</label>
       <input type="imageUrl" id="imageUrl" class="form-control" id="imageUrl" placeholder="http://img.jpg">
     </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <input type="description" id="description" class="form-control" placeholder="Most fun event!">
-    </div>
-    <button type="submit" id="saveNewevent" class="btn btn-primary">Submit</button>
-    <button class="delete-event btn btn-warning" id="cancel-btn">Cancel</button>
+    <div class="event-form-buttons">
+    <button type="submit" id="saveNewevent" class="save-new-event btn btn-secondary">Submit</button>
+    <button class="cancel-add-event btn btn-secondary" id="cancel-btn">Cancel</button>
+  </div>
   </form></div>
-  <div id="diary" class = "hide">diary</div>
+</div>
+  <div id="event-entries"></div>
+ <!-- all events end -->
+  <div id="diary" class = "hide"></div>
   <!-- form for new diary entry  -->
   <div id="new-diary-entry" class="hide">
       <button class="btn btn-danger">Add New Entry</button>
@@ -90,14 +98,14 @@
     </div>
     <!-- listed diary entries according to current user uid -->
     <div id="diary-entries" class="hide"></div>
-    <div id="events" class = "hide">event</div>
     <div id="add-news-form" class= ""></div>
     <div id="edit-news-form" class="hide"></div>
     <div id="add-username" class="hide">
-
-    <label for="username-form">Date</label>
+    <div class="usernameDiv">
+    <label for="username-form">Create a username</label>
     <input type="text" class="form-control" id="username-form" placeholder="Enter username here">
-    <button class="btn btn-warning" id="add-username-btn">Register Username</button>
+    <button class="btn btn-secondary username-btn" id="add-username-btn">Register Username</button>
+  </div>
   </div>
 </body>
 </html>
