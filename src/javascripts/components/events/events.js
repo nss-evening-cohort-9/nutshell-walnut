@@ -14,7 +14,7 @@ const allEventsDiv = document.getElementById('alleventswrapper');
 const saveEditEntry = (e) => {
   const newEntryText = document.getElementById('edit-area').value;
   const entryId = e.target.id.split('.')[1];
-  eventsData.getEvents()
+  eventsData.getEvents()z
     .then((entries) => {
       entries.forEach((entry) => {
         if (entry.id === entryId) {
@@ -133,8 +133,8 @@ const showEvents = (events) => {
   addEditEvents();
 };
 
-const getEvents = (uid) => {
-  eventsData.getEventsByUid(uid)
+const getEvents = () => {
+  eventsData.getEvents()
     .then((events) => {
       showEvents(events);
     })
