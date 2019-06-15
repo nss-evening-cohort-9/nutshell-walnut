@@ -5,7 +5,7 @@ const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
 const getUsers = () => axios.get(`${firebaseUrl}/users.json`);
 
-const getUsername = (uid) => {
+const getUsername = uid => new Promise((resolve, reject) => {
   getUsers()
     .then((users) => {
       const userObjects = users.data;
@@ -13,10 +13,10 @@ const getUsername = (uid) => {
       const matchingUser = usersArray.find(u => u.uid === uid);
       const myUsername = matchingUser.username;
       console.error(myUsername);
-      return myUsername;
+      resolve(myUsername);
     })
-    .catch(err => console.error('shitaintworking', err));
-};
+    .catch(err => reject(err));
+});
 
 
 const addUsername = userObject => axios.post(`${firebaseUrl}/users.json`, userObject);

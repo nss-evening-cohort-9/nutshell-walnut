@@ -73,21 +73,25 @@ const deleteMessageEvent = (e) => {
 
 const createNewMessage = (e) => {
   const myId = firebase.auth().currentUser.uid;
-  console.error(usersData.getUsername(myId));
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    const newMessage = {
-      username: 'Dem Boiz!',
-      messageText: document.getElementById('textInput').value,
-      uid: firebase.auth().currentUser.uid,
-    };
-    messagesData.addNewMessage(newMessage)
-      .then(() => {
-        document.getElementById('textInput').value = '';
-        messageStringBuilder();
-      })
-      .catch(err => console.error('no new message for you', err));
-  }
+  usersData.getUsername(myId).then((response) => {
+    let myUsername = '';
+    myUsername = response;
+    console.error(myUsername);
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const newMessage = {
+        username: `${myUsername}`,
+        messageText: document.getElementById('textInput').value,
+        uid: firebase.auth().currentUser.uid,
+      };
+      messagesData.addNewMessage(newMessage)
+        .then(() => {
+          document.getElementById('textInput').value = '';
+          messageStringBuilder();
+        })
+        .catch(err => console.error('no new message for you', err));
+    }
+  });
 };
 
 const messageEvents = () => {
