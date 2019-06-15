@@ -59,7 +59,7 @@ margin-top:50px;
   width: 400px;
 }
 
-.edit-btn, .delete-event, .cancel-add-event, .save-new-event{
+.edit-event, .delete-event, .cancel-add-event, .save-new-event{
   display: flex;
   margin: 5px;
   display: inline-flex;
@@ -95,3 +95,13 @@ margin-top:50px;
   padding: 0px;
   margin:20px;
 }
+
+label {
+  color: #886d59ce;
+}
+
+.event-form-buttons{
+  display: flex;
+  justify-content: center;
+}
+

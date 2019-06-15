@@ -29,7 +29,9 @@ const navbarEvents = () => {
         diaryDiv.classList.add('hide');
         eventDiv.classList.add('hide');
         neweventDiv.classList.add('hide');
-        allEventsDiv.classList.add('hide');
+        neweventDiv.classList.add('hide');
+        allEventsDiv.classList.remove('allEventsDivAfter');
+        eventDiv.classList.remove('eventsAfter');
       } else if (e.target.id === 'navbar-button-news') {
         messagesDiv.classList.add('hide');
         newsDiv.classList.remove('hide');
@@ -37,7 +39,9 @@ const navbarEvents = () => {
         diaryDiv.classList.add('hide');
         eventDiv.classList.add('hide');
         neweventDiv.classList.add('hide');
-        allEventsDiv.classList.add('hide');
+        neweventDiv.classList.add('hide');
+        allEventsDiv.classList.remove('allEventsDivAfter');
+        eventDiv.classList.remove('eventsAfter');
       } else if (e.target.id === 'navbar-button-events') {
         messagesDiv.classList.add('hide');
         newsDiv.classList.add('hide');
@@ -49,7 +53,9 @@ const navbarEvents = () => {
         diaryDiv.classList.remove('hide');
         eventDiv.classList.add('hide');
         neweventDiv.classList.add('hide');
-        allEventsDiv.classList.add('hide');
+        neweventDiv.classList.add('hide');
+        allEventsDiv.classList.remove('allEventsDivAfter');
+        eventDiv.classList.remove('eventsAfter');
         document.getElementById('diary-entries').classList.remove('hide');
         diaryPrint.diaryPrintToDom(firebase.auth().currentUser.uid);
       }

@@ -24,15 +24,15 @@ const createNewevent = (e) => {
   };
   eventsData.addNewevent(newevent)
     .then(() => {
+      neweventDiv.classList.add('hide');
+      allEventsDiv.classList.remove('allEventsDivAfter');
+      eventDiv.classList.remove('eventsAfter');
       document.getElementById('title').value = '';
       document.getElementById('dayOfWeek').value = '';
       document.getElementById('dateOfMonth').value = '';
       document.getElementById('month').value = '';
       document.getElementById('imageUrl').value = '';
       document.getElementById('location').value = '';
-      neweventDiv.classList.add('hide');
-      allEventsDiv.classList.remove('allEventsDivAfter');
-      eventDiv.classList.remove('eventsAfter');
       getEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('no new events', err));
@@ -54,7 +54,10 @@ const deleteEventsEvent = (e) => {
 };
 
 const cancelAddEvent = () => {
-  getEvents(); // eslint-disable-line no-use-before-define
+  allEventsDiv.classList.remove('allEventsDivAfter');
+  eventDiv.classList.remove('eventsAfter');
+  neweventDiv.classList.add('hide');
+  eventDiv.classList.remove('hide');
 };
 
 const addEvents = () => {
@@ -82,8 +85,8 @@ const showEvents = (events) => {
     domString += '<div class="eventSideDiv col-10 shadow-sm">';
     domString += `<h2>${event.title}</h2>`;
     domString += `<div><img src="${event.imageUrl}" class="eventimg"></div>`;
-    domString += `<div>${event.description}</div>`;
-    domString += `<button class="edit-btn btn btn-secondary shadow-sm" id="edit-btn.${event.id}">Edit Event?</button>`;
+    domString += `<div>${event.location}</div>`;
+    domString += `<button class="edit-event btn btn-secondary shadow-sm" id="edit-btn.${event.id}">Edit Event?</button>`;
     domString += `<button class="delete-event btn btn-secondary shadow-sm" id="dlt-btn.${event.id}">Delete this event?</button>`;
     domString += '</div>';
     domString += '</div>';

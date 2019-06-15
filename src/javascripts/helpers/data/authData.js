@@ -10,9 +10,6 @@ const diaryNavbar = document.getElementById('navbar-button-diary');
 const messagesNavbar = document.getElementById('navbar-button-messages');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
-const eventDiv = document.getElementById('events');
-const neweventDiv = document.getElementById('new-events');
-const allEventsDiv = document.getElementById('alleventswrapper');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -54,9 +51,6 @@ const checkLoginStatus = () => {
             messagesNavbar.classList.remove('hide');
             authNavbar.classList.add('hide');
             logoutNavbar.classList.remove('hide');
-            eventDiv.classList.add('hide');
-            neweventDiv.classList.add('hide');
-            allEventsDiv.classList.add('hide');
             document.getElementById('username-form').value = '';
             document.getElementById('add-username').classList.add('hide');
           }
