@@ -73,7 +73,7 @@ const deleteMessageEvent = (e) => {
 
 const createNewMessage = (e) => {
   const myId = firebase.auth().currentUser.uid;
-  getUsername(myId);
+  console.error(usersData.getUsername(myId));
   if (e.key === 'Enter') {
     e.preventDefault();
     const newMessage = {
