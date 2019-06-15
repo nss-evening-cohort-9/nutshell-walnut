@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import $ from 'jquery';
 import messagesData from '../../helpers/data/messagesData';
+import usersData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
 
 const getText = (element) => {
@@ -33,7 +34,10 @@ const saveMessage = (e) => {
 
 const editMessage = (e) => {
   e.preventDefault();
-  util.handleEditBtn(e);
+  const myId = firebase.auth().currentUser.uid;
+  if (e.target.classList[0] === myId) {
+    util.handleEditBtn(e);
+  }
 };
 
 const messageStringBuilder = () => {
@@ -68,6 +72,8 @@ const deleteMessageEvent = (e) => {
 };
 
 const createNewMessage = (e) => {
+  const myId = firebase.auth().currentUser.uid;
+  getUsername(myId);
   if (e.key === 'Enter') {
     e.preventDefault();
     const newMessage = {
