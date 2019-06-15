@@ -1,6 +1,6 @@
 .eventwrapper{
   display: flex;
-  width:600px;
+  width:auto;
 }
 
 .events{
@@ -13,6 +13,17 @@
   padding: 10px;
   margin: 0 auto;
   margin-top:50px;
+ 
+}
+
+.new-events{
+width: 50%;
+margin: 30px;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.568);
+border-radius: 10px;
+height: 700px;
+margin-top:50px;
 }
 
 .events-title{
@@ -31,6 +42,7 @@
   height: auto;
   background-color: #886d59ce;
   color: white;
+  height: 110px;
 }
 
 .eventSideDiv{
@@ -47,17 +59,39 @@
   width: 400px;
 }
 
-.edit-btn, .delete-event{
+.edit-btn, .delete-event, .cancel-add-event, .save-new-event{
   display: flex;
   margin: 5px;
   display: inline-flex;
   text-transform: uppercase;
-  font-size: 9px;
+  font-size:11px;
   background-color: #886d59ce;
   color: white;
   border: none;
 }
 
-.eventafter{
-  // background-color: yellow;
+.add-event-button{
+  display: flex;
+  margin: 5px;
+  display: inline-flex;
+  text-transform: uppercase;
+  font-size:14px;
+  background-color: #4d2626;
+  color: rgb(255, 255, 255);
+  border: none;
+}
+
+.allEventsDivAfter{
+  display: flex;
+  }
+
+.eventsAfter{
+  background-color: rgba(255, 255, 255, 0.568);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0px;
+  margin:20px;
 }

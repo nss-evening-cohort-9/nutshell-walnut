@@ -3,6 +3,7 @@ import 'firebase/auth';
 import util from '../../helpers/util';
 import newsData from '../../helpers/data/newsData';
 
+// creates a news object an add to firebase
 const submitForm = (e) => {
   e.preventDefault();
   const addedNews = {
@@ -22,6 +23,7 @@ const submitForm = (e) => {
     .catch(err => console.error('articles could not update', err));
 };
 
+// prints form to the DOM
 const addNewsForm = () => {
   let domString = '';
   domString += '<form class="col-6 offset-3" autocomplete = "on">';
@@ -47,21 +49,88 @@ const addNewsForm = () => {
   document.getElementById('addNews').addEventListener('click', submitForm);
 };
 
+// Adds event-listeners to the submit button and prints out a form
 const addFormEvent = () => {
   const addNewsBtn = document.getElementById('create-news-form');
-  addNewsBtn.addEventListener('click', addNewsForm);
+  addNewsBtn.addEventListener('click', () => {
+    addNewsForm();
+  });
 };
 
+// updates the database with the edits
+const submitEdit = (e) => {
+  e.preventDefault();
+  const entryBtnId = e.target.id.split('.')[1];
+  const editedNews = {
+    title: document.getElementById(`news-title.${entryBtnId}`).value,
+    url: document.getElementById(`news-url.${entryBtnId}`).value,
+    synopsis: document.getElementById(`synopsis.${entryBtnId}`).value,
+    uid: firebase.auth().currentUser.uid,
+  };
+  newsData.getNewsByUid(firebase.auth().currentUser.uid)
+    .then((news) => {
+      news.forEach((newsItem) => {
+        if (newsItem.id === entryBtnId) {
+          newsData.postEditNews(entryBtnId, editedNews);
+        }
+      });
+    })
+    .catch(err => console.error('could not update', err));
+  setTimeout(() => { getNews(firebase.auth().currentUser.uid); }, 500); // eslint-disable-line no-use-before-define
+  document.getElementById('edit-news-form').classList.add('hide');
+};
+
+// prints out the form for editing and pre-populates them with previous info
+const editNews = (e) => {
+  document.getElementById('edit-news-form').classList.remove('hide');
+  document.getElementById('news').classList.add('hide');
+  const editId = e.target.id.split('.')[1];
+  const submitId = e.target.id.split('.')[1];
+  const editTitle = document.getElementById(`newsTitle.${editId}`).innerHTML;
+  const editUrl = document.getElementById(`newsUrl.${editId}`).href;
+  const editSynopsis = document.getElementById(`newsSynopsis.${editId}`).innerHTML;
+  let domString = '';
+  domString += '<form class="col-6 offset-3" autocomplete = "on">';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += `<label for="news-title.${editId}">News Title:</label>`;
+  domString += `<input id="news-title.${editId}" type="text" class="form-control" value="${editTitle}">`;
+  domString += '<i class="fa fa-film fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += `<label for="news-url.${editId}">Link:</label>`;
+  domString += `<input id="news-url.${editId}" type="url" class="form-control" value="${editUrl}" size="30" >`;
+  domString += '<i class="fa fa-photo fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += '<div class="inputWithIcon form-group">';
+  domString += `<label for="synopsis.${editId}">Synopsis:</label>`;
+  domString += `<input id="synopsis.${editId}" type="text" class="form-control" value="${editSynopsis}">`;
+  domString += '<i class="fa fa-star-half-full fa-lg fa-fw" aria-hidden="true"></i>';
+  domString += '</div>';
+  domString += `<button type="submit" id="addNews.${submitId}" class="btn btn-outline-primary">Submit</button>`;
+  domString += '</form>';
+  util.printToDom('edit-news-form', domString);
+  document.getElementById(`addNews.${submitId}`).addEventListener('click', submitEdit);
+};
+
+// adds event-listener to the edit button
+const addBtnEvent = () => {
+  const editBtn = document.getElementsByClassName('edit');
+  for (let i = 0; i < editBtn.length; i += 1) {
+    editBtn[i].addEventListener('click', editNews);
+  }
+};
+
+// prints the news card to the DOM
 const newsDomStringBulder = (news) => {
   let domString = '<div class = "container container-news d-flex hide">';
   news.forEach((newsItem) => {
     domString += '<div class = "box card">';
     domString += '<div class = "content">';
-    domString += '<h2>01</h2>';
-    domString += `<div class="card-title">${newsItem.title}</div>`;
-    domString += `<p class="">${newsItem.synopsis}</p>`;
-    domString += `<a href="${newsItem.url}">Read more</a>`;
-    domString += '<button type="submit" id="editNewsForm" class="btn btn-outline-info edit">Edit</button>';
+    domString += `<h2>0${news.indexOf(newsItem)}</h2>`;
+    domString += `<div id="newsTitle.${newsItem.id}" class="card-title">${newsItem.title}</div>`;
+    domString += `<p id="newsSynopsis.${newsItem.id}" class="">${newsItem.synopsis}</p>`;
+    domString += `<a href="${newsItem.url}" id="newsUrl.${newsItem.id}">Read more</a>`;
+    domString += `<button id="editNewsForm.${newsItem.id}" class="btn btn-outline-info edit">Edit</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -69,21 +138,16 @@ const newsDomStringBulder = (news) => {
   domString += '<button type="submit" id="create-news-form" class="btn btn-outline-danger">Add Article</button>';
   util.printToDom('news', domString);
   addFormEvent();
+  addBtnEvent();
 };
 
-const addEditBtnEvent = () => {
-  const editBtn = document.getElementsByClassName('edit');
-  for (let i = 0; i < editBtn.length; i += 1) {
-    editBtn[i].addEventListener('click', () => console.error('editNews'));
-  }
-};
-
+// Recieves an array of news by UID from the promise call
 const getNews = (uid) => {
-  console.error('hey');
   newsData.getNewsByUid(uid)
     .then((news) => {
       newsDomStringBulder(news);
       document.getElementById('news').classList.remove('hide');
+      return news;
     })
     .catch(err => console.error('no news read', err));
 };
@@ -92,5 +156,4 @@ export default {
   newsDomStringBulder,
   getNews,
   addFormEvent,
-  addEditBtnEvent,
 };

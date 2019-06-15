@@ -6,12 +6,11 @@
 @import '../javascripts/components/myNavbar/myNavbar.scss';
 @import './responsive.scss';
 @import '../javascripts/components/events/events.scss';
+@import './username.scss';
 
 body {
-  background-color: #886d59;
-  background-image: url('../../assets/nutshellbg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: url('../../assets/nutshellbg.png') no-repeat center center fixed;
+-webkit-background-size: cover;
 }
 
 .hide {

@@ -1,12 +1,15 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import $ from 'jquery';
+
 import eventsData from '../../helpers/data/eventsData';
 import util from '../../helpers/util';
 
 
 const eventDiv = document.getElementById('events');
 const neweventDiv = document.getElementById('new-events');
+const allEventsDiv = document.getElementById('alleventswrapper');
 
 const saveEditEntry = (e) => {
   const newEntryText = document.getElementById('edit-area').value;
@@ -50,12 +53,12 @@ const createNewevent = (e) => {
   e.preventDefault();
   const newevent = {
     title: document.getElementById('title').value,
+    location: document.getElementById('location').value,
     dayOfWeek: document.getElementById('dayOfWeek').value,
     uid: firebase.auth().currentUser.uid,
     dateOfMonth: document.getElementById('dateOfMonth').value,
     month: document.getElementById('month').value,
     imageUrl: document.getElementById('imageUrl').value,
-    description: document.getElementById('description').value,
   };
   eventsData.addNewevent(newevent)
     .then(() => {
@@ -64,17 +67,20 @@ const createNewevent = (e) => {
       document.getElementById('dateOfMonth').value = '';
       document.getElementById('month').value = '';
       document.getElementById('imageUrl').value = '';
-      document.getElementById('description').value = '';
-      eventDiv.classList.remove('hide');
+      document.getElementById('location').value = '';
       neweventDiv.classList.add('hide');
+      allEventsDiv.classList.remove('allEventsDivAfter');
+      eventDiv.classList.remove('eventsAfter');
       getEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('no new events', err));
 };
 
 const newEventButton = () => {
-  eventDiv.classList.add('eventafter');
+  allEventsDiv.classList.add('allEventsDivAfter');
+  eventDiv.classList.add('eventsAfter');
   neweventDiv.classList.remove('hide');
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
   document.getElementById('saveNewevent').addEventListener('click', createNewevent);
 };
 
@@ -88,6 +94,7 @@ const deleteEventsEvent = (e) => {
 const cancelAddEvent = () => {
   getEvents(); // eslint-disable-line no-use-before-define
 };
+
 const addEvents = () => {
   const addbtn = document.getElementsByClassName('add-event-button');
   Array.from(addbtn).forEach((onebtn) => {
@@ -114,20 +121,20 @@ const showEvents = (events) => {
     domString += `<h2>${event.title}</h2>`;
     domString += `<div><img src="${event.imageUrl}" class="eventimg"></div>`;
     domString += `<div>${event.description}</div>`;
-    domString += `<button class="edit-btn btn btn-secondary" id="edit-btn.${event.id}">Edit Event?</button>`;
-    domString += `<button class="delete-event btn btn-secondary" id="dlt-btn.${event.id}">Delete this event?</button>`;
+    domString += `<button class="edit-btn btn btn-secondary shadow-sm" id="edit-btn.${event.id}">Edit Event?</button>`;
+    domString += `<button class="delete-event btn btn-secondary shadow-sm" id="dlt-btn.${event.id}">Delete this event?</button>`;
     domString += '</div>';
     domString += '</div>';
   });
-  domString += '<button class="add-event-button btn btn-warning">Add</button>';
+  domString += '<button class="add-event-button btn btn-secondary shadow-sm">Add New Event</button>';
   domString += '</div>';
   util.printToDom('events', domString);
   addEvents();
   addEditEvents();
 };
 
-const getEvents = () => {
-  eventsData.getEvents()
+const getEvents = (uid) => {
+  eventsData.getEventsByUid(uid)
     .then((events) => {
       showEvents(events);
     })
