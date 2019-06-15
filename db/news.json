@@ -1,30 +1,42 @@
 {
   "news1": {
     "id": "",
-    "title":"mehhn",
-    "url":"",
-    "synopsis":"",
+    "title":"Raptors win first NBA title, knocking off Warriors in six games",
+    "imgUrl": "https://www.washingtonpost.com/resizer/AfWUFY8uvXd2U7MzbbEfRk0JWDg=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/UJWX6QEOK4I6TNXUAMZVMUBNZY.jpg",
+    "url":"https://www.washingtonpost.com/sports/2019/06/13/warriors-raptors-nba-finals-game/?utm_term=.1c0b7e7edf34",
+    "synopsis":"OAKLAND, Calif. — After waiting 24 long years and enduring one of the most excruciating seconds imaginable, Canada finally got its first taste of NBA glory.",
     "uid": "QuBK6bNVcLeCYlCmHOy903Rznui1"
   },
   "news2": {
     "id":"",
-    "title":"geez",
-    "url": "",
-    "synopsis": "",
+    "title":"Amazon sued over Alexa child recordings in US",
+    "imgUrl": "https://ichef.bbci.co.uk/news/736/cpsprodpb/12BDE/production/_107366767_98be3223-9ce2-41eb-b2cc-dffc1abed55e.jpg",
+    "url": "https://www.bbc.com/news/technology-48623914",
+    "synopsis": "Amazon is being sued over its smart assistant's recordings of children.",
     "uid": "JLGUIEDwOnhDcbFGdX7ZaUVJgA82"
   },
   "news3": {
     "id": "",
-    "title":"goof",
-    "url":"",
-    "synopsis":"",
+    "title":"Doomsday By 2050 If We Don’t Fight Climate Change Now, Report Warns",
+    "imgUrl": "https://allthatsinteresting.com/wordpress/wp-content/uploads/2019/06/factory-emissions-spewing-out-768x512.jpg",
+    "url":"https://allthatsinteresting.com/climate-change-report-2050-doomsday",
+    "synopsis":"Opposing sides of the political spectrum continue to argue, as climate change continues to ravage the planet. ",
     "uid":"AIw4vwylIVQjivYoGXDYRtSgyHX2"
   },
   "news4": {
     "id": "",
-    "title":"blah",
-    "url":"",
-    "synopsis":"",
+    "title":"We will never see another NBA champion like these Toronto Raptors again.",
+    "imgUrl": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AACSd1r.img?h=416&w=624&m=6&q=60&o=f&l=f&x=1304&y=1031",
+    "url":"https://www.msn.com/en-us/sports/nba/we-will-never-see-another-nba-champion-like-these-toronto-raptors-again/ar-AACS1zU",
+    "synopsis":"Enjoy this one, Canada. Game 6 of the 2019 NBA Finals was a remarkable night of basketball, and the Toronto Raptors are a remarkable basketball team.",
     "uid":"cm7cDgTGhXNFXVDMaeUklRW7dlI2"
+  },
+  "news5": {
+    "id": "",
+    "title":"Stop Array.forEach and start using filter, map, some, reduce functions.",
+    "imgUrl": "https://cdn-images-1.medium.com/max/1200/1*d5j-9zFRs3ytgEEfASvWdg.jpeg",
+    "url":"https://medium.com/front-end-weekly/stop-array-foreach-and-start-using-filter-map-some-reduce-functions-298b4dabfa09",
+    "synopsis":"There are lot of advantages of using specific methods over generic forEach version.",
+    "uid": "QuBK6bNVcLeCYlCmHOy903Rznui1"
   }
 }
