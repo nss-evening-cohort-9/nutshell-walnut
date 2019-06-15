@@ -9,6 +9,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  border-radius: 10px;
   padding: 10px;
   margin: 0 auto;
   margin-top:50px;
@@ -17,6 +18,8 @@
 .events-title{
   font-family: 'Gloria Hallelujah', cursive;
   font-weight: bolder;
+  margin: 20px;
+  color: #542a0f;
 }
 
 .dateSideDiv{
@@ -26,35 +29,33 @@
   border-radius: 10px;
   margin: 10px;
   height: auto;
+  background-color: #886d59ce;
+  color: white;
 }
 
 .eventSideDiv{
-  background-color: white;
+  background-color: rgb(250, 244, 239);
   text-align: center;
   padding: 5px;
   border-radius: 10px;
   margin: 10px;
   max-width: 425px;
+  color: #886d59ce;
 }
 
 .eventimg{
   width: 400px;
 }
 
-.delete-event {
+.edit-btn, .delete-event{
   display: flex;
   margin: 5px;
   display: inline-flex;
   text-transform: uppercase;
   font-size: 9px;
-}
-
-.edit-btn{
-  display: flex;
-  margin: 5px;
-  display: inline-flex;
-  text-transform: uppercase;
-  font-size: 9px;
+  background-color: #886d59ce;
+  color: white;
+  border: none;
 }
 
 .eventafter{

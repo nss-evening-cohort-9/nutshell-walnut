@@ -105,17 +105,17 @@ const showEvents = (events) => {
   let domString = '<h3 class="events-title">My Events</h3>';
   events.forEach((event) => {
     domString += '<div class="eventwrapper">';
-    domString += '<div class="dateSideDiv col-3">';
+    domString += '<div class="dateSideDiv col-2 shadow-sm">';
     domString += `<h6>${event.dayOfWeek}</h6>`;
     domString += `<h1>${event.dateOfMonth}</h1>`;
     domString += `<h6>${event.month}</h6>`;
     domString += '</div>';
-    domString += '<div class="eventSideDiv col-5">';
+    domString += '<div class="eventSideDiv col-10 shadow-sm">';
     domString += `<h2>${event.title}</h2>`;
     domString += `<div><img src="${event.imageUrl}" class="eventimg"></div>`;
     domString += `<div>${event.description}</div>`;
-    domString += `<button class="edit-btn btn btn-warning" id="edit-btn.${event.id}">Edit Event?</button>`;
-    domString += `<button class="delete-event btn btn-warning" id="dlt-btn.${event.id}">Delete this event?</button>`;
+    domString += `<button class="edit-btn btn btn-secondary" id="edit-btn.${event.id}">Edit Event?</button>`;
+    domString += `<button class="delete-event btn btn-secondary" id="dlt-btn.${event.id}">Delete this event?</button>`;
     domString += '</div>';
     domString += '</div>';
   });
