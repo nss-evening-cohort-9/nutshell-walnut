@@ -12,7 +12,6 @@ const getUsername = uid => new Promise((resolve, reject) => {
       const usersArray = Object.values(userObjects);
       const matchingUser = usersArray.find(u => u.uid === uid);
       const myUsername = matchingUser.username;
-      console.error(myUsername);
       resolve(myUsername);
     })
     .catch(err => reject(err));

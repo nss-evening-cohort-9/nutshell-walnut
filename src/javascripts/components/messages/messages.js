@@ -76,7 +76,6 @@ const createNewMessage = (e) => {
   usersData.getUsername(myId).then((response) => {
     let myUsername = '';
     myUsername = response;
-    console.error(myUsername);
     if (e.key === 'Enter') {
       e.preventDefault();
       const newMessage = {
